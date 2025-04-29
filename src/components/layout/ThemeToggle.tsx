@@ -1,0 +1,34 @@
+
+import { useState, useEffect } from 'react';
+import { Sun, Moon } from 'lucide-react';
+import { Switch } from "@/components/ui/switch";
+import { useTheme } from '@/context/ThemeContext';
+
+const ThemeToggle = () => {
+  const { theme, setTheme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(theme === 'dark');
+
+  useEffect(() => {
+    setIsDarkMode(theme === 'dark');
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(isDarkMode ? 'light' : 'dark');
+  };
+
+  return (
+    <div className="flex items-center justify-center p-2 bg-background border border-border rounded-full shadow-md">
+      <div className="flex items-center gap-2">
+        <Sun className={`h-4 w-4 ${!isDarkMode ? "text-tulsa-orange" : "text-muted-foreground"}`} />
+        <Switch
+          checked={isDarkMode}
+          onCheckedChange={toggleTheme}
+          aria-label="Toggle dark mode"
+        />
+        <Moon className={`h-4 w-4 ${isDarkMode ? "text-tulsa-blue-300" : "text-muted-foreground"}`} />
+      </div>
+    </div>
+  );
+};
+
+export default ThemeToggle;
