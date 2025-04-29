@@ -8,7 +8,7 @@ const AboutPage = () => {
     <Layout>
       <Hero
         title="About Tulsa Open Doors"
-        subtitle="Our mission, vision, and the story behind our work."
+        subtitle="Our mission and vision"
       />
       
       <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -40,44 +40,14 @@ const AboutPage = () => {
         
         <Separator className="my-12" />
         
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-tulsa-blue-700 mb-4">Our Story</h2>
-          <p className="text-lg text-gray-700 mb-4">
-            Tulsa Open Doors was founded in 2023 by a coalition of community organizations, formerly incarcerated individuals, employers, and housing providers committed to addressing the challenges of reentry in our community.
-          </p>
-          <p className="text-lg text-gray-700 mb-4">
-            After recognizing the significant barriers that people with conviction histories face when seeking employment and housing, we created a centralized platform to connect these individuals with opportunities explicitly open to them.
-          </p>
-          <p className="text-lg text-gray-700">
-            Today, we continue to grow our network of second-chance-friendly employers and housing providers while advocating for policy changes that support fair chance hiring and housing practices throughout Tulsa.
-          </p>
-        </section>
-        
-        <Separator className="my-12" />
-        
         <section>
           <h2 className="text-3xl font-bold text-tulsa-blue-700 mb-4">Our Team</h2>
           <p className="text-lg text-gray-700 mb-8">
             Tulsa Open Doors is run by a dedicated team of professionals with backgrounds in workforce development, housing advocacy, criminal justice reform, and technology.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="text-center">
-              <div className="w-32 h-32 mx-auto rounded-full bg-gray-300 mb-4"></div>
-              <h3 className="text-xl font-semibold mb-1">Jane Smith</h3>
-              <p className="text-gray-600 mb-2">Executive Director</p>
-              <p className="text-gray-700 text-sm">
-                Former attorney with 15 years experience in criminal justice reform.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-32 h-32 mx-auto rounded-full bg-gray-300 mb-4"></div>
-              <h3 className="text-xl font-semibold mb-1">Michael Johnson</h3>
-              <p className="text-gray-600 mb-2">Employer Relations Manager</p>
-              <p className="text-gray-700 text-sm">
-                20 years in HR and workforce development, focused on inclusive hiring practices.
-              </p>
-            </div>
+          <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <p className="text-center text-gray-600 dark:text-gray-300">Our team information is coming soon</p>
           </div>
         </section>
       </div>
