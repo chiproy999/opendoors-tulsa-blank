@@ -47,20 +47,20 @@
   }
 
   .dark {
-    --background: 214 60% 5%;
+    --background: 222 47% 11%;
     --foreground: 210 40% 98%;
 
-    --card: 214 60% 5%;
+    --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 214 60% 5%;
+    --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
     --primary-foreground: 214 60% 15%;
 
-    --secondary: 30 95% 57%;
-    --secondary-foreground: 214 60% 5%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
@@ -76,7 +76,7 @@
     --ring: 212.7 26.8% 83.9%;
 
     /* Sidebar Variables */
-    --sidebar-background: 214 60% 5%;
+    --sidebar-background: 222 47% 11%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 210 40% 98%;
     --sidebar-primary-foreground: 214 60% 5%;

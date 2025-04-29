@@ -17,7 +17,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="flex items-center justify-center p-2 bg-background border border-border rounded-full shadow-md">
+    <div className="flex items-center justify-center p-2 bg-background/80 backdrop-blur-sm border border-border rounded-full shadow-md">
       <div className="flex items-center gap-2">
         <Sun className={`h-4 w-4 ${!isDarkMode ? "text-tulsa-orange" : "text-muted-foreground"}`} />
         <Switch
@@ -25,7 +25,7 @@ const ThemeToggle = () => {
           onCheckedChange={toggleTheme}
           aria-label="Toggle dark mode"
         />
-        <Moon className={`h-4 w-4 ${isDarkMode ? "text-tulsa-blue-300" : "text-muted-foreground"}`} />
+        <Moon className={`h-4 w-4 ${isDarkMode ? "text-blue-300" : "text-muted-foreground"}`} />
       </div>
     </div>
   );
