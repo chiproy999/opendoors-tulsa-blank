@@ -1,16 +1,25 @@
-
 import { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import Hero from '@/components/common/Hero';
-import ResourceCard, { ResourceData } from '@/components/resources/ResourceCard';
+import { ResourceData } from '@/components/resources/ResourceCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { InfoIcon, FolderPlus } from 'lucide-react';
+import { InfoIcon, FolderPlus, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import NewsletterSignup from '@/components/common/NewsletterSignup';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 // Mock data
 const mockResources: ResourceData[] = [
@@ -78,6 +87,77 @@ const mockResources: ResourceData[] = [
     slug: 'substance-abuse-recovery-programs'
   }
 ];
+
+const ResourceCard = ({ resource }: { resource: ResourceData }) => {
+  const getCategoryColor = (category: string) => {
+    switch(category.toLowerCase()) {
+      case 'employment':
+        return 'bg-blue-500 hover:bg-blue-600';
+      case 'housing':
+        return 'bg-green-500 hover:bg-green-600';
+      case 'legal':
+        return 'bg-purple-500 hover:bg-purple-600';
+      case 'education':
+        return 'bg-amber-500 hover:bg-amber-600';
+      case 'health':
+        return 'bg-red-500 hover:bg-red-600';
+      default:
+        return 'bg-gray-500 hover:bg-gray-600';
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Card className="h-full transition-all hover:shadow-md hover:border-tulsa-blue-200 cursor-pointer">
+          <CardHeader>
+            <div className="flex justify-between items-start">
+              <CardTitle className="text-xl font-semibold text-tulsa-blue-700">
+                {resource.title}
+              </CardTitle>
+              <Badge className={getCategoryColor(resource.category)}>
+                {resource.category}
+              </Badge>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700">
+              {resource.excerpt}
+            </p>
+          </CardContent>
+          <CardFooter className="pt-2">
+            <span className="text-tulsa-blue-600 text-sm font-medium hover:underline flex items-center">
+              <FileText className="h-4 w-4 mr-1" /> Read more
+            </span>
+          </CardFooter>
+        </Card>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-lg">
+        <DialogHeader>
+          <DialogTitle className="text-xl font-bold text-tulsa-blue-700">
+            {resource.title}
+          </DialogTitle>
+          <Badge className={`${getCategoryColor(resource.category)} mb-2 mt-1`}>
+            {resource.category}
+          </Badge>
+        </DialogHeader>
+        <DialogDescription>
+          <div className="text-gray-700 mb-4">
+            <p>{resource.excerpt}</p>
+            <p className="mt-4">This is a demonstration resource. Actual resource content will be available once service providers register and add their information.</p>
+          </div>
+          <div className="mt-6 pt-4 border-t">
+            <Link to="/auth/register">
+              <Button className="w-full bg-tulsa-orange hover:bg-tulsa-orange-600">
+                Register to Create Real Resources
+              </Button>
+            </Link>
+          </div>
+        </DialogDescription>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 const ResourcesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
