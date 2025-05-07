@@ -10,12 +10,12 @@ interface HousingSearchBarProps {
 
 const HousingSearchBar = ({ onSearch }: HousingSearchBarProps) => {
   const [query, setQuery] = useState('');
-  const [bedrooms, setBedrooms] = useState('');
-  const [maxRent, setMaxRent] = useState('');
+  const [bedrooms, setBedrooms] = useState('any');
+  const [maxRent, setMaxRent] = useState('any');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(query, bedrooms, maxRent);
+    onSearch(query, bedrooms === 'any' ? '' : bedrooms, maxRent === 'any' ? '' : maxRent);
   };
 
   return (
@@ -43,7 +43,7 @@ const HousingSearchBar = ({ onSearch }: HousingSearchBarProps) => {
               <SelectValue placeholder="Any" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Any</SelectItem>
+              <SelectItem value="any">Any</SelectItem>
               <SelectItem value="1">1+</SelectItem>
               <SelectItem value="2">2+</SelectItem>
               <SelectItem value="3">3+</SelectItem>
@@ -61,7 +61,7 @@ const HousingSearchBar = ({ onSearch }: HousingSearchBarProps) => {
               <SelectValue placeholder="Any" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Any</SelectItem>
+              <SelectItem value="any">Any</SelectItem>
               <SelectItem value="500">$500</SelectItem>
               <SelectItem value="750">$750</SelectItem>
               <SelectItem value="1000">$1,000</SelectItem>
