@@ -53,7 +53,7 @@ const Hero = ({
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-4">
             {primaryCTA && (
               <Link to={primaryCTA.link}>
-                <Button className="bg-tulsa-orange hover:bg-tulsa-orange-600 text-white px-6 py-2">
+                <Button className="bg-tulsa-orange hover:bg-tulsa-orange-600 text-white font-semibold px-6 py-2">
                   {primaryCTA.text}
                 </Button>
               </Link>
@@ -61,7 +61,7 @@ const Hero = ({
             
             {secondaryCTA && (
               <Link to={secondaryCTA.link}>
-                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-tulsa-blue px-6 py-2">
+                <Button variant="outline" className="bg-white/20 backdrop-blur border-white text-white hover:bg-white hover:text-tulsa-blue-700 font-semibold px-6 py-2">
                   {secondaryCTA.text}
                 </Button>
               </Link>
