@@ -6,6 +6,11 @@ import ResourceCard, { ResourceData } from '@/components/resources/ResourceCard'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { InfoIcon, FolderPlus } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import NewsletterSignup from '@/components/common/NewsletterSignup';
 
 // Mock data
 const mockResources: ResourceData[] = [
@@ -110,6 +115,23 @@ const ResourcesPage = () => {
           />
         </div>
         
+        <Alert className="my-6 bg-blue-50 text-blue-800 border border-blue-200">
+          <InfoIcon className="h-4 w-4 mr-2" />
+          <AlertDescription>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+              <span>
+                These are example resources for demonstration purposes. Does your organization provide services for individuals with conviction histories?
+              </span>
+              <Link to="/auth/register">
+                <Button className="whitespace-nowrap bg-purple-500 hover:bg-purple-600">
+                  <FolderPlus className="mr-1 h-4 w-4" />
+                  Add Your Resource
+                </Button>
+              </Link>
+            </div>
+          </AlertDescription>
+        </Alert>
+        
         <Tabs defaultValue="all" value={activeCategory} onValueChange={setActiveCategory}>
           <TabsList className="mb-8">
             {categories.map(category => (
@@ -146,6 +168,26 @@ const ResourcesPage = () => {
             </TabsContent>
           ))}
         </Tabs>
+        
+        <div className="mt-12 p-8 bg-purple-50 rounded-lg border border-purple-200">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl font-bold text-purple-700 mb-3">Are You a Service Provider?</h2>
+            <p className="text-lg text-gray-700 mb-6">
+              If your organization provides resources, services, or support for individuals with conviction histories, we'd love to feature your programs on our platform.
+            </p>
+            <div className="flex justify-center">
+              <Link to="/auth/register">
+                <Button className="bg-tulsa-orange hover:bg-tulsa-orange-600 text-white px-6 py-2">
+                  Partner With Us
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-12">
+          <NewsletterSignup />
+        </div>
       </div>
     </Layout>
   );
