@@ -33,7 +33,7 @@ const Hero = ({
 
   return (
     <div 
-      className={`relative px-6 lg:px-8 py-24 md:py-32 lg:py-40 ${bgClass}`}
+      className={`relative px-4 sm:px-6 lg:px-8 py-20 md:py-28 lg:py-32 ${bgClass}`}
       style={bgStyle}
     >
       {/* Overlay for background images */}
@@ -41,19 +41,19 @@ const Hero = ({
         <div className="absolute inset-0 bg-black opacity-60"></div>
       )}
       
-      <div className="relative max-w-3xl mx-auto text-center">
-        <h1 className={`text-4xl font-bold tracking-tight sm:text-6xl mb-4 ${backgroundImage ? 'text-white' : 'text-white'}`}>
+      <div className="relative max-w-4xl mx-auto text-center">
+        <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 ${backgroundImage ? 'text-white' : 'text-white'}`}>
           {title}
         </h1>
-        <p className={`mt-6 text-lg leading-8 ${backgroundImage ? 'text-gray-200' : 'text-gray-200'}`}>
+        <p className={`mt-4 text-base sm:text-lg md:text-xl leading-7 ${backgroundImage ? 'text-gray-200' : 'text-gray-200'}`}>
           {subtitle}
         </p>
         
         {(primaryCTA || secondaryCTA) && (
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             {primaryCTA && (
               <Link to={primaryCTA.link}>
-                <Button className="bg-tulsa-orange hover:bg-tulsa-orange-600 text-white font-semibold px-6 py-2">
+                <Button className="bg-tulsa-orange hover:bg-tulsa-orange-600 text-white font-semibold px-6 py-2 w-full sm:w-auto text-base">
                   {primaryCTA.text}
                 </Button>
               </Link>
@@ -61,7 +61,7 @@ const Hero = ({
             
             {secondaryCTA && (
               <Link to={secondaryCTA.link}>
-                <Button variant="outline" className="bg-white/20 backdrop-blur border-white text-white hover:bg-white hover:text-tulsa-blue-700 font-semibold px-6 py-2">
+                <Button variant="outline" className="bg-white/20 backdrop-blur border-white text-white hover:bg-white hover:text-tulsa-blue-700 font-semibold px-6 py-2 w-full sm:w-auto text-base">
                   {secondaryCTA.text}
                 </Button>
               </Link>
