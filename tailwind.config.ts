@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,19 +62,36 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// New purple color scheme replacing tulsa colors
-				purple: {
-					DEFAULT: '#9b87f5',
-					50: '#f5f3ff',
-					100: '#ede9fe',
-					200: '#ddd6fe',
-					300: '#c4b5fd',
-					400: '#a78bfa',
-					500: '#8b5cf6',
-					600: '#7e69ab',
-					700: '#6e59a5',
-					800: '#5e4692',
-					900: '#1a1f2c'
+				// New red color scheme replacing purple colors
+				red: {
+					DEFAULT: '#ea384c',
+					50: '#fef2f3',
+					100: '#fde6e7',
+					200: '#fbd0d5',
+					300: '#f7a9b3',
+					400: '#f27688',
+					500: '#ea384c',
+					600: '#d91e3a',
+					700: '#b6162f',
+					800: '#96162a',
+					900: '#7d1828'
+				},
+				// Keep black and white as standard colors
+				black: '#000000',
+				white: '#ffffff',
+				// Add gray as the fourth color
+				gray: {
+					DEFAULT: '#8E9196',
+					50: '#f9fafb',
+					100: '#f3f4f6',
+					200: '#e5e7eb',
+					300: '#d1d5db',
+					400: '#9ca3af',
+					500: '#6b7280',
+					600: '#4b5563',
+					700: '#374151',
+					800: '#1f2937',
+					900: '#111827'
 				}
 			},
 			borderRadius: {

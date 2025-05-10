@@ -29,7 +29,7 @@ const Hero = ({
 
   const bgClass = backgroundImage
     ? "bg-cover bg-center bg-no-repeat"
-    : "bg-gradient-to-br from-purple-700 to-purple-900";
+    : "bg-gradient-to-br from-red-700 to-red-900";
 
   return (
     <div 
@@ -42,10 +42,10 @@ const Hero = ({
       )}
       
       <div className="relative max-w-4xl mx-auto text-center">
-        <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 ${backgroundImage ? 'text-white' : 'text-white'}`}>
+        <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 text-white`}>
           {title}
         </h1>
-        <p className={`mt-4 text-base sm:text-lg md:text-xl leading-7 ${backgroundImage ? 'text-gray-200' : 'text-gray-200'}`}>
+        <p className={`mt-4 text-base sm:text-lg md:text-xl leading-7 text-gray-200`}>
           {subtitle}
         </p>
         
@@ -53,7 +53,7 @@ const Hero = ({
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             {primaryCTA && (
               <Link to={primaryCTA.link}>
-                <Button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 w-full sm:w-auto text-base">
+                <Button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 w-full sm:w-auto text-base">
                   {primaryCTA.text}
                 </Button>
               </Link>
@@ -61,7 +61,7 @@ const Hero = ({
             
             {secondaryCTA && (
               <Link to={secondaryCTA.link}>
-                <Button variant="outline" className="bg-white/20 backdrop-blur border-white text-white hover:bg-white hover:text-purple-700 font-semibold px-6 py-2 w-full sm:w-auto text-base">
+                <Button variant="outline" className="bg-white/20 backdrop-blur border-white text-white hover:bg-white hover:text-red-700 font-semibold px-6 py-2 w-full sm:w-auto text-base">
                   {secondaryCTA.text}
                 </Button>
               </Link>
