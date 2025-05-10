@@ -11,26 +11,27 @@ const AboutPage = () => {
     <Layout>
       <Hero
         title="About Tulsa Open Doors"
-        subtitle="Our mission and vision"
+        subtitle="My mission and vision"
+        backgroundImage="https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&w=1920&q=80"
       />
       
       <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-tulsa-blue-700 dark:text-blue-300 mb-4">Our Mission</h2>
+          <h2 className="text-3xl font-bold text-purple-700 dark:text-purple-300 mb-4">My Mission</h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-            Tulsa Open Doors exists to create pathways to sustainable employment and stable housing for individuals with arrest or conviction histories. We're dedicated to reducing recidivism, fostering economic mobility, and building a more inclusive Tulsa.
+            Tulsa Open Doors exists to create pathways to sustainable employment and stable housing for individuals with arrest or conviction histories. I'm dedicated to reducing recidivism, fostering economic mobility, and building a more inclusive Tulsa.
           </p>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            By connecting job and housing seekers with second-chance-friendly employers and landlords, we help dismantle barriers to reentry and promote successful community reintegration.
+            By connecting job and housing seekers with second-chance-friendly employers and landlords, I help dismantle barriers to reentry and promote successful community reintegration.
           </p>
         </section>
         
         <Separator className="my-12" />
         
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-tulsa-blue-700 dark:text-blue-300 mb-4">Our Vision</h2>
+          <h2 className="text-3xl font-bold text-purple-700 dark:text-purple-300 mb-4">My Vision</h2>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            We envision a Tulsa where:
+            I envision a Tulsa where:
           </p>
           <ul className="list-disc pl-6 mt-4 space-y-2 text-gray-700 dark:text-gray-300">
             <li>Every individual has the opportunity to rebuild their life after involvement with the criminal justice system</li>
@@ -44,13 +45,13 @@ const AboutPage = () => {
         <Separator className="my-12" />
         
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-tulsa-blue-700 dark:text-blue-300 mb-6">My Story</h2>
+          <h2 className="text-3xl font-bold text-purple-700 dark:text-purple-300 mb-6">My Story</h2>
           <Card className="bg-gray-50 dark:bg-gray-800">
             <CardContent className="pt-6">
               <div className="flex items-start gap-4">
-                <Quote className="text-tulsa-blue-600 dark:text-blue-400 flex-shrink-0" size={32} />
+                <Quote className="text-purple-600 dark:text-purple-400 flex-shrink-0" size={32} />
                 <p className="text-gray-700 dark:text-gray-300 italic">
-                  My journey is a testament to the power of transformation. I've experienced firsthand how someone can turn their life around and become a moral, upstanding citizen. That's why I started Tulsa Open Doors - because I believe in second chances and know that people can change. This platform exists to help others find the opportunities they need to rebuild their lives.
+                  My journey is a testament to the power of transformation. As a former inmate, I've experienced firsthand how someone can turn their life around and become a moral, upstanding citizen. That's why I started Tulsa Open Doors - because I believe in second chances and know that people can change. This platform exists to help others find the opportunities they need to rebuild their lives, just as I was able to do with the support of others who believed in me.
                 </p>
               </div>
             </CardContent>
@@ -60,11 +61,11 @@ const AboutPage = () => {
         <Separator className="my-12" />
         
         <section>
-          <h2 className="text-3xl font-bold text-tulsa-blue-700 dark:text-blue-300 mb-6">Guiding Philosophy</h2>
-          <Alert className="bg-gray-50 dark:bg-gray-800 border-tulsa-blue-200">
+          <h2 className="text-3xl font-bold text-purple-700 dark:text-purple-300 mb-6">Guiding Philosophy</h2>
+          <Alert className="bg-gray-50 dark:bg-gray-800 border-purple-200">
             <AlertDescription className="py-4">
               <div className="flex items-center gap-4">
-                <Quote className="text-tulsa-blue-600 dark:text-blue-400 flex-shrink-0" size={32} />
+                <Quote className="text-purple-600 dark:text-purple-400 flex-shrink-0" size={32} />
                 <div>
                   <p className="text-xl text-gray-700 dark:text-gray-300 italic mb-2">
                     "If you want to be happy, practice compassion. If you want others to be happy, practice compassion."

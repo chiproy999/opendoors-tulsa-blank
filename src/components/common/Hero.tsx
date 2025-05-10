@@ -29,7 +29,7 @@ const Hero = ({
 
   const bgClass = backgroundImage
     ? "bg-cover bg-center bg-no-repeat"
-    : "bg-gradient-to-br from-tulsa-blue-700 to-tulsa-blue-900";
+    : "bg-gradient-to-br from-purple-700 to-purple-900";
 
   return (
     <div 
@@ -53,7 +53,7 @@ const Hero = ({
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             {primaryCTA && (
               <Link to={primaryCTA.link}>
-                <Button className="bg-tulsa-orange hover:bg-tulsa-orange-600 text-white font-semibold px-6 py-2 w-full sm:w-auto text-base">
+                <Button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 w-full sm:w-auto text-base">
                   {primaryCTA.text}
                 </Button>
               </Link>
@@ -61,7 +61,7 @@ const Hero = ({
             
             {secondaryCTA && (
               <Link to={secondaryCTA.link}>
-                <Button variant="outline" className="bg-white/20 backdrop-blur border-white text-white hover:bg-white hover:text-tulsa-blue-700 font-semibold px-6 py-2 w-full sm:w-auto text-base">
+                <Button variant="outline" className="bg-white/20 backdrop-blur border-white text-white hover:bg-white hover:text-purple-700 font-semibold px-6 py-2 w-full sm:w-auto text-base">
                   {secondaryCTA.text}
                 </Button>
               </Link>

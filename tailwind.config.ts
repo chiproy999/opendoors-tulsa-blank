@@ -63,34 +63,19 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom colors for Tulsa Open Doors
-				tulsa: {
-					blue: {
-						DEFAULT: '#1A365D',
-						50: '#E6EBF4',
-						100: '#C2D1E5',
-						200: '#89A7D0',
-						300: '#507DB0',
-						400: '#2C5A8F',
-						500: '#1A365D',
-						600: '#15294C',
-						700: '#101F3A',
-						800: '#0B1528',
-						900: '#070C16'
-					},
-					orange: {
-						DEFAULT: '#ED8936',
-						50: '#FDEDD8',
-						100: '#FBDCB6',
-						200: '#F8BB72',
-						300: '#F5992F',
-						400: '#ED8936',
-						500: '#DA6F1B',
-						600: '#B45A16',
-						700: '#8D4511',
-						800: '#673110',
-						900: '#401E0A'
-					}
+				// New purple color scheme replacing tulsa colors
+				purple: {
+					DEFAULT: '#9b87f5',
+					50: '#f5f3ff',
+					100: '#ede9fe',
+					200: '#ddd6fe',
+					300: '#c4b5fd',
+					400: '#a78bfa',
+					500: '#8b5cf6',
+					600: '#7e69ab',
+					700: '#6e59a5',
+					800: '#5e4692',
+					900: '#1a1f2c'
 				}
 			},
 			borderRadius: {

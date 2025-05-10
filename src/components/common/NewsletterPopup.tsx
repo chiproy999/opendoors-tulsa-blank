@@ -49,7 +49,7 @@ const NewsletterPopup = () => {
         
         {!hasSubscribed ? (
           <>
-            <h3 className="text-xl font-bold text-center mb-2">Stay Updated</h3>
+            <h3 className="text-xl font-bold text-center mb-2 text-gray-900 dark:text-white">Stay Updated</h3>
             <p className="text-gray-600 dark:text-gray-300 text-center mb-4">
               Subscribe to our newsletter for the latest opportunities and resources.
             </p>
@@ -62,10 +62,10 @@ const NewsletterPopup = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-tulsa-blue-500 focus:border-tulsa-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
-              <Button type="submit" className="w-full bg-tulsa-blue hover:bg-tulsa-blue-600 text-white">
+              <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 text-white">
                 Subscribe
               </Button>
             </form>
@@ -73,7 +73,7 @@ const NewsletterPopup = () => {
         ) : (
           <div className="text-center py-6">
             <div className="text-green-500 text-4xl mb-4">✓</div>
-            <h3 className="text-xl font-bold mb-2">Thank You!</h3>
+            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Thank You!</h3>
             <p className="text-gray-600 dark:text-gray-300">
               You've successfully subscribed to our newsletter.
             </p>

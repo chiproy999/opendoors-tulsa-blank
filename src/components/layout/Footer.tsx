@@ -5,14 +5,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-tulsa-blue-700 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+    <footer className="bg-purple-900 text-white">
+      <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and mission */}
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center mb-4">
               <span className="text-2xl font-bold text-white">Tulsa</span>
-              <span className="text-2xl font-bold text-tulsa-orange ml-1">Open Doors</span>
+              <span className="text-2xl font-bold text-purple-300 ml-1">Open Doors</span>
             </Link>
             <p className="text-sm text-gray-300 mb-4">
               Connecting second-chance job and housing seekers with inclusive opportunities in Tulsa.
@@ -27,7 +27,7 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 text-sm font-medium text-white bg-tulsa-orange border-0 rounded-r hover:bg-tulsa-orange-600 focus:outline-none"
+                  className="px-4 py-2 text-sm font-medium text-white bg-purple-600 border-0 rounded-r hover:bg-purple-700 focus:outline-none"
                 >
                   Subscribe
                 </button>
@@ -44,7 +44,7 @@ const Footer = () => {
                   to="/jobs" 
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  Find Jobs
+                  Jobs
                 </Link>
               </li>
               <li>
@@ -52,7 +52,7 @@ const Footer = () => {
                   to="/housing" 
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  Find Housing
+                  Housing
                 </Link>
               </li>
               <li>
@@ -68,7 +68,7 @@ const Footer = () => {
                   to="/about" 
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  About Us
+                  About
                 </Link>
               </li>
               <li>
@@ -76,7 +76,7 @@ const Footer = () => {
                   to="/contact" 
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  Contact Us
+                  Contact
                 </Link>
               </li>
             </ul>
