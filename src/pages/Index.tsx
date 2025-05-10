@@ -66,7 +66,7 @@ const Index = () => {
             {/* For Housing Seekers */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden h-full flex flex-col">
               <div className="p-6 flex-grow">
-                <h3 className="text-xl font-semibold mb-3 text-red-600 dark:text-red-400">Apartments/Houses for Rent</h3>
+                <h3 className="text-xl font-semibold mb-3 text-red-600 dark:text-red-400">Apts/Houses for Rent</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">Discover housing options from landlords who offer fair consideration regardless of conviction history.</p>
               </div>
               <div className="p-6 pt-0 mt-auto">
@@ -96,46 +96,49 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Employer/Landlord Call to Action */}
+      {/* Employer/Landlord Call to Action and Sign In/Sign Up */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-700 to-red-900 text-white">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Employer or Landlord?</h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Join our network of second-chance-friendly businesses and property owners making a difference in Tulsa.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/auth/register?type=employer">
-              <Button className="bg-white text-red-700 hover:bg-gray-100 px-8 py-3 text-lg">
-                I'm an Employer
-              </Button>
-            </Link>
-            <Link to="/auth/register?type=landlord">
-              <Button className="bg-red-500 hover:bg-red-600 px-8 py-3 text-lg">
-                I'm a Landlord
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Sign In/Sign Up Section */}
-      <section className="py-12 px-4 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-6xl mx-auto text-center">
-          <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Join Our Community</h3>
-          <p className="mb-8 text-gray-600 dark:text-gray-300">
-            Already have an account or need to create one? Access your personalized dashboard.
-          </p>
-          <div className="flex justify-center gap-4">
-            <Link to="/auth/login">
-              <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white">
-                Sign In
-              </Button>
-            </Link>
-            <Link to="/auth/register">
-              <Button className="bg-red-600 hover:bg-red-700 text-white">
-                Sign Up
-              </Button>
-            </Link>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Employer/Landlord Section */}
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl font-bold mb-6">Employer or Landlord?</h2>
+              <p className="text-xl mb-8">
+                Join our network of second-chance-friendly businesses and property owners making a difference in Tulsa.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                <Link to="/auth/register?type=employer">
+                  <Button className="bg-white text-red-700 hover:bg-gray-100 px-8 py-3 text-lg">
+                    I'm an Employer
+                  </Button>
+                </Link>
+                <Link to="/auth/register?type=landlord">
+                  <Button className="bg-red-500 hover:bg-red-600 px-8 py-3 text-lg">
+                    I'm a Landlord
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Job/Housing Seeker Section with Sign In/Sign Up */}
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl font-bold mb-6">Seeking Opportunities?</h2>
+              <p className="text-xl mb-8">
+                Looking for job opportunities or housing? Create an account or sign in to access your personalized dashboard.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                <Link to="/auth/register?type=seeker">
+                  <Button className="bg-white text-red-700 hover:bg-gray-100 px-8 py-3 text-lg">
+                    Create Account
+                  </Button>
+                </Link>
+                <Link to="/auth/login">
+                  <Button className="bg-red-500 hover:bg-red-600 px-8 py-3 text-lg">
+                    Sign In
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
