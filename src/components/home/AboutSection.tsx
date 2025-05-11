@@ -36,7 +36,7 @@ const AboutSection = () => {
               </div>
               <h4 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Personal Experience</h4>
               <p className="text-center text-gray-600 dark:text-gray-300">
-                From incarceration to creating opportunities for others, my journey fuels this mission.
+                Altruism, genuine concern for the well-being of others
               </p>
             </div>
           </div>

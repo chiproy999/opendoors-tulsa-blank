@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const OpportunitiesCallout = () => {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-700 to-red-900 text-white">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-800 to-red-700 text-white">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Employer/Landlord Section */}
@@ -15,12 +15,12 @@ const OpportunitiesCallout = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
               <Link to="/auth/register?type=employer">
-                <Button className="bg-white text-red-700 hover:bg-gray-100 px-8 py-3 text-lg">
+                <Button className="bg-white text-red-800 hover:bg-gray-100 px-8 py-3 text-lg font-medium">
                   I'm an Employer
                 </Button>
               </Link>
               <Link to="/auth/register?type=landlord">
-                <Button className="bg-red-500 hover:bg-red-600 px-8 py-3 text-lg">
+                <Button className="bg-red-500 hover:bg-red-600 px-8 py-3 text-lg font-medium border border-white/20">
                   I'm a Landlord
                 </Button>
               </Link>
@@ -35,12 +35,12 @@ const OpportunitiesCallout = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
               <Link to="/auth/register?type=seeker">
-                <Button className="bg-white text-red-700 hover:bg-gray-100 px-8 py-3 text-lg">
+                <Button className="bg-white text-red-800 hover:bg-gray-100 px-8 py-3 text-lg font-medium">
                   Sign Up
                 </Button>
               </Link>
               <Link to="/auth/login">
-                <Button className="bg-red-500 hover:bg-red-600 px-8 py-3 text-lg">
+                <Button className="bg-red-500 hover:bg-red-600 px-8 py-3 text-lg font-medium border border-white/20">
                   Sign In
                 </Button>
               </Link>

@@ -25,6 +25,7 @@ const ThemeToggle = () => {
           checked={isDarkMode}
           onCheckedChange={toggleTheme}
           aria-label="Toggle dark mode"
+          className="border-2 border-gray-300 dark:border-gray-600"
         />
         <span className={`text-xs font-medium ${isDarkMode ? "text-red-400" : "text-muted-foreground"}`}>Dark</span>
         <Moon className={`h-4 w-4 ${isDarkMode ? "text-red-400" : "text-muted-foreground"}`} />
