@@ -62,19 +62,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// New red color scheme replacing purple colors
-				red: {
-					DEFAULT: '#ea384c',
-					50: '#fef2f3',
-					100: '#fde6e7',
-					200: '#fbd0d5',
-					300: '#f7a9b3',
-					400: '#f27688',
-					500: '#ea384c',
-					600: '#d91e3a',
-					700: '#b6162f',
-					800: '#96162a',
-					900: '#7d1828'
+				blue: {
+					DEFAULT: '#3B82F6',
+					50: '#EBF2FF',
+					100: '#D6E4FF',
+					200: '#ADC8FF',
+					300: '#85ABFF',
+					400: '#5C8EFF',
+					500: '#3B82F6',
+					600: '#0B5CE6',
+					700: '#0747B3',
+					800: '#053080',
+					900: '#02204D'
 				},
 				// Keep black and white as standard colors
 				black: '#000000',
