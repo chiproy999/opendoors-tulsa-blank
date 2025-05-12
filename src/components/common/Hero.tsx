@@ -13,6 +13,10 @@ interface HeroProps {
     text: string;
     link: string;
   };
+  businessCTA?: {
+    text: string;
+    link: string;
+  };
   backgroundImage?: string;
 }
 
@@ -21,6 +25,7 @@ const Hero = ({
   subtitle,
   primaryCTA,
   secondaryCTA,
+  businessCTA,
   backgroundImage,
 }: HeroProps) => {
   const bgStyle = backgroundImage 
@@ -29,7 +34,7 @@ const Hero = ({
 
   const bgClass = backgroundImage
     ? "bg-cover bg-center bg-no-repeat"
-    : "bg-gradient-to-br from-red-700 to-red-900";
+    : "bg-gradient-to-br from-blue-700 to-blue-900";
 
   return (
     <div 
@@ -53,7 +58,7 @@ const Hero = ({
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             {primaryCTA && (
               <Link to={primaryCTA.link}>
-                <Button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 w-full sm:w-auto text-base">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 w-full sm:w-auto text-base">
                   {primaryCTA.text}
                 </Button>
               </Link>
@@ -61,11 +66,21 @@ const Hero = ({
             
             {secondaryCTA && (
               <Link to={secondaryCTA.link}>
-                <Button variant="outline" className="bg-white/20 backdrop-blur border-white text-white hover:bg-white hover:text-red-700 font-semibold px-6 py-2 w-full sm:w-auto text-base">
+                <Button variant="outline" className="bg-white/20 backdrop-blur border-white text-white hover:bg-white hover:text-blue-700 font-semibold px-6 py-2 w-full sm:w-auto text-base">
                   {secondaryCTA.text}
                 </Button>
               </Link>
             )}
+          </div>
+        )}
+        
+        {businessCTA && (
+          <div className="mt-6">
+            <Link to={businessCTA.link}>
+              <Button variant="link" className="text-white hover:text-blue-200 font-medium">
+                {businessCTA.text} →
+              </Button>
+            </Link>
           </div>
         )}
       </div>

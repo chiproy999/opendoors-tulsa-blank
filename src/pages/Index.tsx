@@ -26,6 +26,7 @@ const Index = () => {
         subtitle="Connecting individuals with conviction histories to second-chance-friendly jobs and housing in Tulsa."
         primaryCTA={{ text: "Jobs", link: "/jobs" }}
         secondaryCTA={{ text: "Housing", link: "/housing" }}
+        businessCTA={{ text: "Business Owner or Landlord? Sign up now & get listed", link: "/auth/register?type=provider" }}
       />
       
       <HowItWorks />
