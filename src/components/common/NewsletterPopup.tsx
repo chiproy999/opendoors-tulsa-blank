@@ -2,10 +2,15 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
+type UserType = 'business_owner' | 'landlord' | 'job_seeker' | 'housing_seeker';
 
 const NewsletterPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
+  const [userType, setUserType] = useState<UserType>('job_seeker');
   const [hasSubscribed, setHasSubscribed] = useState(false);
 
   useEffect(() => {
@@ -27,8 +32,8 @@ const NewsletterPopup = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the email to your backend
-    console.log('Newsletter signup:', email);
+    // Here you would typically send the data to your backend
+    console.log('Newsletter signup:', { firstName, email, userType });
     setHasSubscribed(true);
     setTimeout(() => {
       closePopup();
@@ -57,6 +62,16 @@ const NewsletterPopup = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <input
+                  type="text"
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+              <div>
+                <input
                   type="email"
                   placeholder="Your email address"
                   value={email}
@@ -65,6 +80,29 @@ const NewsletterPopup = () => {
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
+              
+              <div>
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">I am a:</p>
+                <RadioGroup value={userType} onValueChange={(value) => setUserType(value as UserType)} className="grid grid-cols-2 gap-2">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem id="business_owner" value="business_owner" />
+                    <label htmlFor="business_owner" className="text-sm">Business Owner</label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem id="landlord" value="landlord" />
+                    <label htmlFor="landlord" className="text-sm">Landlord</label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem id="job_seeker" value="job_seeker" />
+                    <label htmlFor="job_seeker" className="text-sm">Job Seeker</label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem id="housing_seeker" value="housing_seeker" />
+                    <label htmlFor="housing_seeker" className="text-sm">Housing Seeker</label>
+                  </div>
+                </RadioGroup>
+              </div>
+              
               <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white">
                 Subscribe
               </Button>

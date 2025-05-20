@@ -9,6 +9,7 @@ const AccessibilityPage = () => {
       <SEOMeta 
         title="Accessibility Statement | Tulsa Open Doors" 
         description="Our commitment to digital accessibility and inclusive design for all users."
+        keywords="accessibility, WCAG, ADA compliance, digital inclusion, web accessibility, disability access, screen reader, Tulsa Open Doors"
       />
 
       <Hero 
