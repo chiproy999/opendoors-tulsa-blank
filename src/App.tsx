@@ -6,6 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import { AuthProvider } from "./context/AuthContext";
+
+// Pages
 import Index from "./pages/Index";
 import JobsPage from "./pages/JobsPage";
 import HousingPage from "./pages/HousingPage";
@@ -15,6 +18,13 @@ import ContactPage from "./pages/ContactPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import NotFoundPage from "./pages/NotFoundPage";
+import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
+import AccessibilityPage from "./pages/AccessibilityPage";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminJobListings from "./pages/admin/AdminJobListings";
+import AdminHousingListings from "./pages/admin/AdminHousingListings";
+import AdminUserAccounts from "./pages/admin/AdminUserAccounts";
 
 const App = () => {
   // Create a new QueryClient instance
@@ -24,23 +34,37 @@ const App = () => {
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="light" storageKey="theme">
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/jobs" element={<JobsPage />} />
-                <Route path="/housing" element={<HousingPage />} />
-                <Route path="/resources" element={<ResourcesPage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/privacy" element={<PrivacyPolicy />} />
-                <Route path="/terms" element={<TermsOfService />} />
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            </BrowserRouter>
-          </TooltipProvider>
+          <AuthProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/jobs" element={<JobsPage />} />
+                  <Route path="/housing" element={<HousingPage />} />
+                  <Route path="/resources" element={<ResourcesPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/privacy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<TermsOfService />} />
+                  <Route path="/accessibility" element={<AccessibilityPage />} />
+                  
+                  {/* Auth routes */}
+                  <Route path="/auth/login" element={<LoginPage />} />
+                  <Route path="/auth/register" element={<RegisterPage />} />
+                  
+                  {/* Admin routes */}
+                  <Route path="/admin" element={<AdminDashboard />} />
+                  <Route path="/admin/jobs" element={<AdminJobListings />} />
+                  <Route path="/admin/housing" element={<AdminHousingListings />} />
+                  <Route path="/admin/users" element={<AdminUserAccounts />} />
+                  
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </BrowserRouter>
+            </TooltipProvider>
+          </AuthProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </React.StrictMode>

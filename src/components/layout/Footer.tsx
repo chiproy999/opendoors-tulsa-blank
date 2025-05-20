@@ -5,14 +5,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-blue-800 text-white">
+    <footer className="bg-red-800 text-white">
       <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and mission */}
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center mb-4">
               <span className="text-2xl font-bold text-white">Tulsa</span>
-              <span className="text-2xl font-bold text-blue-300 ml-1">Open Doors</span>
+              <span className="text-2xl font-bold text-red-300 ml-1">Open Doors</span>
             </Link>
             <p className="text-sm text-gray-300 mb-4">
               Connecting second-chance job and housing seekers with inclusive opportunities in Tulsa.
@@ -27,7 +27,7 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border-0 rounded-r hover:bg-blue-700 focus:outline-none"
+                  className="px-4 py-2 text-sm font-medium text-white bg-red-600 border-0 rounded-r hover:bg-red-700 focus:outline-none"
                 >
                   Subscribe
                 </button>

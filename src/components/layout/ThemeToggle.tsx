@@ -19,16 +19,16 @@ const ThemeToggle = () => {
   return (
     <div className="flex items-center justify-center p-2 bg-background/80 backdrop-blur-sm border border-border rounded-full shadow-md">
       <div className="flex items-center gap-2">
-        <Sun className={`h-4 w-4 ${!isDarkMode ? "text-blue-400" : "text-muted-foreground"}`} />
-        <span className={`text-xs font-medium ${!isDarkMode ? "text-blue-400" : "text-muted-foreground"}`}>Day</span>
+        <Sun className={`h-4 w-4 ${!isDarkMode ? "text-red-400" : "text-muted-foreground"}`} />
+        <span className={`text-xs font-medium ${!isDarkMode ? "text-red-400" : "text-muted-foreground"}`}>Day</span>
         <Switch
           checked={isDarkMode}
           onCheckedChange={toggleTheme}
           aria-label="Toggle dark mode"
           className="border-2 border-gray-300 dark:border-gray-600"
         />
-        <span className={`text-xs font-medium ${isDarkMode ? "text-blue-400" : "text-muted-foreground"}`}>Dark</span>
-        <Moon className={`h-4 w-4 ${isDarkMode ? "text-blue-400" : "text-muted-foreground"}`} />
+        <span className={`text-xs font-medium ${isDarkMode ? "text-red-400" : "text-muted-foreground"}`}>Dark</span>
+        <Moon className={`h-4 w-4 ${isDarkMode ? "text-red-400" : "text-muted-foreground"}`} />
       </div>
     </div>
   );

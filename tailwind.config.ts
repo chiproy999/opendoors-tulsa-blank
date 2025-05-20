@@ -62,18 +62,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				blue: {
-					DEFAULT: '#3B82F6',
-					50: '#EBF2FF',
-					100: '#D6E4FF',
-					200: '#ADC8FF',
-					300: '#85ABFF',
-					400: '#5C8EFF',
-					500: '#3B82F6',
-					600: '#0B5CE6',
-					700: '#0747B3',
-					800: '#053080',
-					900: '#02204D'
+				red: {
+					DEFAULT: '#EA384C',
+					50: '#FDF0F2',
+					100: '#FBDCE0',
+					200: '#F7B9C1',
+					300: '#F395A2',
+					400: '#EF6673',
+					500: '#EA384C',
+					600: '#D01F33',
+					700: '#A61829',
+					800: '#7D121F',
+					900: '#530C15'
 				},
 				// Keep black and white as standard colors
 				black: '#000000',
