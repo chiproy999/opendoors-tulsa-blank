@@ -4,10 +4,42 @@ import { Separator } from '@/components/ui/separator';
 import { Card, CardContent } from '@/components/ui/card';
 import { Quote } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import FAQSection from '@/components/common/FAQSection';
+import EnhancedSEOMeta from '@/components/seo/EnhancedSEOMeta';
+
+const aboutFAQs = [
+  {
+    id: "founder-background",
+    question: "What is the founder's background?",
+    answer: "The founder is a formerly incarcerated individual who has successfully rebuilt their life and now dedicates their time to helping others in similar situations. Their personal experience provides authentic insight into the challenges and opportunities in the reentry process."
+  },
+  {
+    id: "why-tulsa",
+    question: "Why focus specifically on Tulsa?",
+    answer: "Tulsa is our founder's home community, and we believe in creating strong local impact. By focusing on Tulsa, we can build deep relationships with local employers, landlords, and service providers to create the most effective support network possible."
+  },
+  {
+    id: "success-stories",
+    question: "Do you have success stories?",
+    answer: "Yes! We've helped numerous individuals find stable employment and housing. While we protect privacy, we can share that our participants have found work in various industries and secured safe, affordable housing throughout the Tulsa area."
+  },
+  {
+    id: "community-support",
+    question: "How does the community support this mission?",
+    answer: "We're grateful for strong community support from progressive employers, compassionate landlords, and various nonprofit organizations. The Tulsa community has shown remarkable openness to second-chance opportunities."
+  }
+];
 
 const AboutPage = () => {
   return (
     <Layout>
+      <EnhancedSEOMeta 
+        title="About Open Doors Tulsa | Our Mission & Founder's Story"
+        description="Learn about Open Doors Tulsa's mission to connect individuals with conviction histories to second-chance opportunities. Founded by someone who has walked this path personally."
+        keywords="Open Doors Tulsa founder, second chance mission, reentry success story, Tulsa nonprofit, conviction history advocacy, fair chance hiring advocate"
+        canonicalUrl="https://opendoorstulsa.com/about"
+      />
+      
       <Hero
         title="About Open Doors Tulsa"
         subtitle="My mission and vision"
@@ -75,6 +107,12 @@ const AboutPage = () => {
           </Alert>
         </section>
       </div>
+      
+      <FAQSection 
+        title="About Our Mission"
+        faqs={aboutFAQs}
+        className="bg-gray-50 dark:bg-gray-900"
+      />
     </Layout>
   );
 };
