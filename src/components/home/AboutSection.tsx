@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 
@@ -15,7 +14,7 @@ const AboutSection = () => {
               As a former inmate who has successfully rebuilt my life, I know firsthand the challenges that individuals with conviction histories face when seeking employment and housing.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              I created Tulsa Open Doors to help others like me who are looking for a second chance. Thanks to the support I received during my reintegration, I'm now able to give back and create pathways for others to rebuild their lives.
+              I created Open Doors Tulsa to help others like me who are looking for a second chance. Thanks to the support I received during my reintegration, I'm now able to give back and create pathways for others to rebuild their lives.
             </p>
             <Link to="/about">
               <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white dark:text-red-400 dark:border-red-400 dark:hover:bg-red-500 dark:hover:text-white">

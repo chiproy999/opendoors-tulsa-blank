@@ -9,14 +9,14 @@ import ContactSection from '@/components/home/ContactSection';
 import SEOMeta from '@/components/home/SEOMeta';
 
 // SEO metadata
-const metaDescription = "Tulsa Open Doors connects individuals with conviction histories to second-chance-friendly jobs and housing opportunities in Tulsa.";
+const metaDescription = "Open Doors Tulsa connects individuals with conviction histories to second-chance-friendly jobs and housing opportunities in Tulsa.";
 const metaKeywords = "second chance hiring, fair chance housing, Tulsa jobs, reentry, conviction history, employment opportunities, housing opportunities, second chance, reentry programs";
 
 const Index = () => {
   return (
     <Layout>
       <SEOMeta 
-        title="Tulsa Open Doors | Second Chance Jobs & Housing"
+        title="Open Doors Tulsa | Second Chance Jobs & Housing"
         description={metaDescription}
         keywords={metaKeywords}
       />

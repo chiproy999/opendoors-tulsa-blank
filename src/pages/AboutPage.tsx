@@ -1,4 +1,3 @@
-
 import Layout from '@/components/layout/Layout';
 import Hero from '@/components/common/Hero';
 import { Separator } from '@/components/ui/separator';
@@ -10,7 +9,7 @@ const AboutPage = () => {
   return (
     <Layout>
       <Hero
-        title="About Tulsa Open Doors"
+        title="About Open Doors Tulsa"
         subtitle="My mission and vision"
       />
       
@@ -18,7 +17,7 @@ const AboutPage = () => {
         <section className="mb-12">
           <h2 className="text-3xl font-bold text-red-600 dark:text-red-400 mb-4">My Mission</h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-            Tulsa Open Doors exists to create pathways to sustainable employment and stable housing for individuals with arrest or conviction histories. I'm dedicated to reducing recidivism, fostering economic mobility, and building a more inclusive Tulsa.
+            Open Doors Tulsa exists to create pathways to sustainable employment and stable housing for individuals with arrest or conviction histories. I'm dedicated to reducing recidivism, fostering economic mobility, and building a more inclusive Tulsa.
           </p>
           <p className="text-lg text-gray-700 dark:text-gray-300">
             By connecting job and housing seekers with second-chance-friendly employers and landlords, I help dismantle barriers to reentry and promote successful community reintegration.
@@ -50,7 +49,7 @@ const AboutPage = () => {
               <div className="flex items-start gap-4">
                 <Quote className="text-red-600 dark:text-red-400 flex-shrink-0" size={32} />
                 <p className="text-gray-700 dark:text-gray-300 italic">
-                  My journey is a testament to the power of transformation. As a former inmate, I've experienced firsthand how someone can turn their life around and become a moral, upstanding citizen. That's why I started Tulsa Open Doors - because I believe in second chances and know that people can change. This platform exists to help others find the opportunities they need to rebuild their lives, just as I was able to do with the support of others who believed in me.
+                  My journey is a testament to the power of transformation. As a former inmate, I've experienced firsthand how someone can turn their life around and become a moral, upstanding citizen. That's why I started Open Doors Tulsa - because I believe in second chances and know that people can change. This platform exists to help others find the opportunities they need to rebuild their lives, just as I was able to do with the support of others who believed in me.
                 </p>
               </div>
             </CardContent>

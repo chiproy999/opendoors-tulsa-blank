@@ -44,8 +44,8 @@ const Navbar = () => {
                     strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="text-xl font-bold text-black dark:text-white ml-2">Tulsa</span>
-              <span className="text-xl font-bold text-red-500 dark:text-red-500 ml-1">Open Doors</span>
+              <span className="text-xl font-bold text-black dark:text-white ml-2">Open Doors</span>
+              <span className="text-xl font-bold text-red-500 dark:text-red-500 ml-1">Tulsa</span>
             </Link>
           </div>
 

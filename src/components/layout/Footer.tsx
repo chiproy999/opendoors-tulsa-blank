@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -11,8 +10,8 @@ const Footer = () => {
           {/* Logo and mission */}
           <div className="md:col-span-2">
             <Link to="/" className="flex items-center mb-4">
-              <span className="text-2xl font-bold text-white">Tulsa</span>
-              <span className="text-2xl font-bold text-red-300 ml-1">Open Doors</span>
+              <span className="text-2xl font-bold text-white">Open Doors</span>
+              <span className="text-2xl font-bold text-red-300 ml-1">Tulsa</span>
             </Link>
             <p className="text-sm text-gray-300 mb-4">
               Connecting second-chance job and housing seekers with inclusive opportunities in Tulsa.
@@ -116,7 +115,7 @@ const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-gray-600">
           <p className="text-sm text-gray-300">
-            © {currentYear} Tulsa Open Doors. All rights reserved.
+            © {currentYear} Open Doors Tulsa. All rights reserved.
           </p>
         </div>
       </div>

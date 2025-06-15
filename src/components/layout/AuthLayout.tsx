@@ -1,4 +1,3 @@
-
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -26,8 +25,8 @@ const AuthLayout = ({ children, title, subtitle }: AuthLayoutProps) => {
                     strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="text-xl font-bold text-black dark:text-white ml-2">Tulsa</span>
-              <span className="text-xl font-bold text-red-500 dark:text-red-500 ml-1">Open Doors</span>
+              <span className="text-xl font-bold text-black dark:text-white ml-2">Open Doors</span>
+              <span className="text-xl font-bold text-red-500 dark:text-red-500 ml-1">Tulsa</span>
             </Link>
           </div>
         </div>
@@ -51,7 +50,7 @@ const AuthLayout = ({ children, title, subtitle }: AuthLayoutProps) => {
       <footer className="bg-white dark:bg-black py-4 border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            <p>&copy; {new Date().getFullYear()} Tulsa Open Doors. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Open Doors Tulsa. All rights reserved.</p>
             <div className="mt-2 flex justify-center space-x-4">
               <Link to="/terms" className="hover:text-red-500 transition-colors">Terms</Link>
               <Link to="/privacy" className="hover:text-red-500 transition-colors">Privacy</Link>

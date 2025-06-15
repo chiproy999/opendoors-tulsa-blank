@@ -1,4 +1,3 @@
-
 import Layout from '@/components/layout/Layout';
 
 const PrivacyPolicy = () => {
@@ -12,7 +11,7 @@ const PrivacyPolicy = () => {
           
           <h2 className="text-2xl font-semibold text-tulsa-blue-700 mt-8 mb-4">1. Introduction</h2>
           <p>
-            Tulsa Open Doors ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+            Open Doors Tulsa ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
           </p>
           <p>
             Please read this Privacy Policy carefully. If you do not agree with the terms of this Privacy Policy, please do not access the site.
@@ -93,10 +92,10 @@ const PrivacyPolicy = () => {
             If you have questions or concerns about this Privacy Policy or our privacy practices, please contact us at:
           </p>
           <p className="mt-2">
-            Tulsa Open Doors<br />
+            Open Doors Tulsa<br />
             123 Main Street, Suite 456<br />
             Tulsa, OK 74103<br />
-            privacy@tulsaopendoors.org<br />
+            privacy@opendoorstulsa.com<br />
             (918) 555-1234
           </p>
         </div>

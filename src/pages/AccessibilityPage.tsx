@@ -1,4 +1,3 @@
-
 import Layout from '@/components/layout/Layout';
 import Hero from '@/components/common/Hero';
 import SEOMeta from '@/components/home/SEOMeta';
@@ -7,21 +6,21 @@ const AccessibilityPage = () => {
   return (
     <Layout>
       <SEOMeta 
-        title="Accessibility Statement | Tulsa Open Doors" 
+        title="Accessibility Statement | Open Doors Tulsa" 
         description="Our commitment to digital accessibility and inclusive design for all users."
-        keywords="accessibility, WCAG, ADA compliance, digital inclusion, web accessibility, disability access, screen reader, Tulsa Open Doors"
+        keywords="accessibility, WCAG, ADA compliance, digital inclusion, web accessibility, disability access, screen reader, Open Doors Tulsa"
       />
 
       <Hero 
         title="Accessibility Statement"
-        subtitle="Our commitment to making Tulsa Open Doors accessible to everyone"
+        subtitle="Our commitment to making Open Doors Tulsa accessible to everyone"
       />
 
       <div className="container max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="prose prose-lg dark:prose-invert mx-auto">
           <h2>Our Commitment</h2>
           <p>
-            Tulsa Open Doors is committed to ensuring digital accessibility for people of all abilities. 
+            Open Doors Tulsa is committed to ensuring digital accessibility for people of all abilities. 
             We are continually improving the user experience for everyone and applying the relevant 
             accessibility standards.
           </p>
@@ -41,19 +40,19 @@ const AccessibilityPage = () => {
           <p>
             The Web Content Accessibility Guidelines (WCAG) defines requirements for designers and 
             developers to improve accessibility for people with disabilities. It defines three levels 
-            of conformance: Level A, Level AA, and Level AAA. Tulsa Open Doors is fully conformant with 
+            of conformance: Level A, Level AA, and Level AAA. Open Doors Tulsa is fully conformant with 
             WCAG 2.1 level AA. Fully conformant means that the content fully conforms to the accessibility 
             standard without any exceptions.
           </p>
           
           <h2>Feedback</h2>
           <p>
-            We welcome your feedback on the accessibility of Tulsa Open Doors. Please let us know if you 
+            We welcome your feedback on the accessibility of Open Doors Tulsa. Please let us know if you 
             encounter accessibility barriers:
           </p>
           <ul>
             <li>Phone: (918) 555-1234</li>
-            <li>E-mail: accessibility@tulsaopendoors.org</li>
+            <li>E-mail: accessibility@opendoorstulsa.com</li>
             <li>Postal address: 123 Main Street, Suite 456, Tulsa, OK 74103</li>
           </ul>
           <p>
@@ -62,7 +61,7 @@ const AccessibilityPage = () => {
           
           <h2>Assessment Approach</h2>
           <p>
-            Tulsa Open Doors assessed the accessibility of this website by the following approaches:
+            Open Doors Tulsa assessed the accessibility of this website by the following approaches:
           </p>
           <ul>
             <li>Self-evaluation</li>

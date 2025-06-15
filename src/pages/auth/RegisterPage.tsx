@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -95,7 +94,7 @@ const RegisterPage = () => {
   return (
     <AuthLayout 
       title="Create an Account"
-      subtitle="Join Tulsa Open Doors and find new opportunities"
+      subtitle="Join Open Doors Tulsa and find new opportunities"
     >
       <div className="mt-8">
         <form className="space-y-6" onSubmit={handleSubmit}>

@@ -1,4 +1,3 @@
-
 import Layout from '@/components/layout/Layout';
 import { Separator } from '@/components/ui/separator';
 
@@ -13,7 +12,7 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-2xl font-semibold text-tulsa-blue-700 dark:text-blue-300">Acceptance of Terms</h2>
             <p>
-              By accessing and using Tulsa Open Doors website and services, you agree to be bound by these Terms of Service. If you do not agree to these Terms, you may not use our services.
+              By accessing and using Open Doors Tulsa website and services, you agree to be bound by these Terms of Service. If you do not agree to these Terms, you may not use our services.
             </p>
           </section>
           
@@ -22,7 +21,7 @@ const TermsOfService = () => {
           <section>
             <h2 className="text-2xl font-semibold text-tulsa-blue-700 dark:text-blue-300">Description of Services</h2>
             <p>
-              Tulsa Open Doors provides a platform connecting job and housing seekers with conviction histories to second-chance-friendly employers and landlords in the Tulsa area.
+              Open Doors Tulsa provides a platform connecting job and housing seekers with conviction histories to second-chance-friendly employers and landlords in the Tulsa area.
             </p>
           </section>
           
