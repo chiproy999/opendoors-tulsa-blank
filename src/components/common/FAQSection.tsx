@@ -57,7 +57,7 @@ const FAQSection = ({
                 {faq.question}
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 dark:text-gray-300 pb-6">
-                <div dangerouslySetInnerHTML={{ __html: faq.answer }} />
+                <p>{faq.answer}</p>
               </AccordionContent>
             </AccordionItem>
           ))}

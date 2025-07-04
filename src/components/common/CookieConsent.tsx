@@ -14,8 +14,13 @@ const CookieConsent = () => {
     }
   }, []);
 
-  const acceptCookies = () => {
-    localStorage.setItem('cookieConsent', 'true');
+  const acceptAllCookies = () => {
+    localStorage.setItem('cookieConsent', 'all-cookies');
+    setShowConsent(false);
+  };
+
+  const declineNonEssential = () => {
+    localStorage.setItem('cookieConsent', 'essential-only');
     setShowConsent(false);
   };
 
@@ -24,30 +29,30 @@ const CookieConsent = () => {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50 py-4 px-6 md:px-8 border-t">
+    <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg z-50 py-4 px-4 sm:px-6 md:px-8 border-t">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center justify-between">
-          <div className="mb-4 md:mb-0 md:mr-8">
-            <p className="text-sm text-gray-800">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="md:mr-8">
+            <p className="text-sm text-gray-800 dark:text-gray-200">
               This website uses cookies to enhance your experience. By continuing to browse, you agree to our{' '}
-              <Link to="/privacy" className="text-tulsa-blue hover:underline">
+              <Link to="/privacy" className="text-red-600 hover:underline dark:text-red-400">
                 Privacy Policy
               </Link>.
             </p>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
             <Button 
               variant="outline" 
               size="sm"
-              onClick={acceptCookies}
-              className="text-xs"
+              onClick={declineNonEssential}
+              className="text-sm py-2 px-4 w-full sm:w-auto"
             >
               Decline Non-Essential
             </Button>
             <Button 
               size="sm" 
-              onClick={acceptCookies}
-              className="bg-tulsa-blue hover:bg-tulsa-blue-600 text-xs"
+              onClick={acceptAllCookies}
+              className="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-4 w-full sm:w-auto"
             >
               Accept All
             </Button>
