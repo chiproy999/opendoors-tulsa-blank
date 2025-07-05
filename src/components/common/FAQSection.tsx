@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Accordion,
   AccordionContent,
@@ -8,10 +9,16 @@ import {
 } from "@/components/ui/accordion";
 import StructuredData from '../seo/StructuredData';
 
+interface FAQLink {
+  text: string;
+  href: string;
+}
+
 interface FAQItem {
   id: string;
   question: string;
   answer: string;
+  links?: FAQLink[];
 }
 
 interface FAQSectionProps {
@@ -57,7 +64,27 @@ const FAQSection = ({
                 {faq.question}
               </AccordionTrigger>
               <AccordionContent className="text-gray-600 dark:text-gray-300 pb-6">
-                <p>{faq.answer}</p>
+                {faq.links && faq.links.length > 0 ? (
+                  <p>
+                    {faq.answer.split(/(register with us|job listings|housing options)/).map((part, index) => {
+                      const linkMatch = faq.links?.find(link => link.text === part);
+                      if (linkMatch) {
+                        return (
+                          <Link 
+                            key={index}
+                            to={linkMatch.href} 
+                            className="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+                          >
+                            {part}
+                          </Link>
+                        );
+                      }
+                      return part;
+                    })}
+                  </p>
+                ) : (
+                  <p>{faq.answer}</p>
+                )}
               </AccordionContent>
             </AccordionItem>
           ))}

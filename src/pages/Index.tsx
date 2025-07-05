@@ -34,7 +34,11 @@ const homepageFAQs = [
   {
     id: "how-to-get-started",
     question: "How do I get started finding a job or housing?",
-    answer: "Simply browse our <a href='/jobs' class='text-red-600 hover:text-red-700'>job listings</a> or <a href='/housing' class='text-red-600 hover:text-red-700'>housing options</a>. You can also contact us directly for personalized assistance in your search."
+    answer: "Simply browse our job listings or housing options. You can also contact us directly for personalized assistance in your search.",
+    links: [
+      { text: "job listings", href: "/jobs" },
+      { text: "housing options", href: "/housing" }
+    ]
   },
   {
     id: "types-of-jobs",
@@ -44,7 +48,10 @@ const homepageFAQs = [
   {
     id: "employers-landlords-join",
     question: "How can employers and landlords get involved?",
-    answer: "Employers and landlords can <a href='/auth/register?type=provider' class='text-red-600 hover:text-red-700'>register with us</a> to post job openings or housing listings. We help you connect with motivated individuals ready to contribute to your business or be reliable tenants."
+    answer: "Employers and landlords can register with us to post job openings or housing listings. We help you connect with motivated individuals ready to contribute to your business or be reliable tenants.",
+    links: [
+      { text: "register with us", href: "/auth/register?type=provider" }
+    ]
   }
 ];
 
