@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { supabase } from '@/integrations/supabase/client';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -32,10 +33,23 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Mock form submission
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Save to Supabase database
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            inquiry_type: formData.inquiryType,
+            message: formData.message,
+          }
+        ]);
+
+      if (error) {
+        throw error;
+      }
       
       toast({
         title: 'Message Sent!',
@@ -49,7 +63,8 @@ const ContactPage = () => {
         inquiryType: '',
         message: ''
       });
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Contact form error:', error);
       toast({
         title: 'Error',
         description: 'There was a problem sending your message. Please try again.',

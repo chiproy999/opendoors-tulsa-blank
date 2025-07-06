@@ -9,7 +9,195 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      contact_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          inquiry_type: string | null
+          message: string
+          name: string
+          subject: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          inquiry_type?: string | null
+          message: string
+          name: string
+          subject: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          inquiry_type?: string | null
+          message?: string
+          name?: string
+          subject?: string
+        }
+        Relationships: []
+      }
+      housing_listings: {
+        Row: {
+          address: string
+          amenities: string | null
+          bathrooms: number
+          bedrooms: number
+          created_at: string
+          description: string
+          id: string
+          is_active: boolean
+          landlord_id: string
+          pet_friendly: boolean
+          rent_amount: number
+          square_feet: number | null
+          title: string
+          updated_at: string
+          utilities_included: boolean
+        }
+        Insert: {
+          address: string
+          amenities?: string | null
+          bathrooms: number
+          bedrooms: number
+          created_at?: string
+          description: string
+          id?: string
+          is_active?: boolean
+          landlord_id: string
+          pet_friendly?: boolean
+          rent_amount: number
+          square_feet?: number | null
+          title: string
+          updated_at?: string
+          utilities_included?: boolean
+        }
+        Update: {
+          address?: string
+          amenities?: string | null
+          bathrooms?: number
+          bedrooms?: number
+          created_at?: string
+          description?: string
+          id?: string
+          is_active?: boolean
+          landlord_id?: string
+          pet_friendly?: boolean
+          rent_amount?: number
+          square_feet?: number | null
+          title?: string
+          updated_at?: string
+          utilities_included?: boolean
+        }
+        Relationships: []
+      }
+      job_listings: {
+        Row: {
+          benefits: string | null
+          company: string
+          created_at: string
+          description: string
+          employer_id: string
+          employment_type: string
+          id: string
+          is_active: boolean
+          location: string
+          requirements: string | null
+          salary_range: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          benefits?: string | null
+          company: string
+          created_at?: string
+          description: string
+          employer_id: string
+          employment_type?: string
+          id?: string
+          is_active?: boolean
+          location: string
+          requirements?: string | null
+          salary_range?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          benefits?: string | null
+          company?: string
+          created_at?: string
+          description?: string
+          employer_id?: string
+          employment_type?: string
+          id?: string
+          is_active?: boolean
+          location?: string
+          requirements?: string | null
+          salary_range?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscriptions: {
+        Row: {
+          email: string
+          id: string
+          is_active: boolean
+          subscribed_at: string
+        }
+        Insert: {
+          email: string
+          id?: string
+          is_active?: boolean
+          subscribed_at?: string
+        }
+        Update: {
+          email?: string
+          id?: string
+          is_active?: boolean
+          subscribed_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          bio: string | null
+          created_at: string
+          first_name: string | null
+          id: string
+          last_name: string | null
+          phone: string | null
+          role: Database["public"]["Enums"]["user_role"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          phone?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          phone?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -18,7 +206,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      user_role: "seeker" | "employer" | "landlord" | "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -133,6 +321,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      user_role: ["seeker", "employer", "landlord", "admin"],
+    },
   },
 } as const
