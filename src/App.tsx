@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 // Pages
 import Index from "./pages/Index";
@@ -54,11 +55,27 @@ const App = () => {
                   <Route path="/auth/login" element={<LoginPage />} />
                   <Route path="/auth/register" element={<RegisterPage />} />
                   
-                  {/* Admin routes */}
-                  <Route path="/admin" element={<AdminDashboard />} />
-                  <Route path="/admin/jobs" element={<AdminJobListings />} />
-                  <Route path="/admin/housing" element={<AdminHousingListings />} />
-                  <Route path="/admin/users" element={<AdminUserAccounts />} />
+                  {/* Admin routes - Protected */}
+                  <Route path="/admin" element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/admin/jobs" element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminJobListings />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/admin/housing" element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminHousingListings />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/admin/users" element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminUserAccounts />
+                    </ProtectedRoute>
+                  } />
                   
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>
