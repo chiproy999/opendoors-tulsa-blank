@@ -9,6 +9,11 @@ import ContactSection from '@/components/home/ContactSection';
 import FAQSection from '@/components/common/FAQSection';
 import EnhancedSEOMeta from '@/components/seo/EnhancedSEOMeta';
 import StructuredData from '@/components/seo/StructuredData';
+import SitemapGenerator from '@/components/seo/SitemapGenerator';
+import PerformanceOptimizer from '@/components/seo/PerformanceOptimizer';
+import SecondChanceStats from '@/components/seo/SecondChanceStats';
+import LocalSEOEnhancer from '@/components/seo/LocalSEOEnhancer';
+import opengraphImage from '@/assets/opengraph-image.jpg';
 
 // SEO metadata optimized for AI search
 const metaDescription = "Open Doors Tulsa helps individuals with conviction histories find second-chance-friendly jobs and housing in Tulsa, Oklahoma. Connect with employers and landlords who believe in fair chance hiring and housing practices.";
@@ -81,11 +86,16 @@ const localBusinessData = {
 const Index = () => {
   return (
     <Layout>
+      <SitemapGenerator />
+      <PerformanceOptimizer />
+      <LocalSEOEnhancer />
+      
       <EnhancedSEOMeta 
         title="Open Doors Tulsa | Second Chance Jobs & Housing in Tulsa, Oklahoma"
         description={metaDescription}
         keywords={metaKeywords}
         canonicalUrl="https://opendoorstulsa.com"
+        ogImage={opengraphImage}
         ogType="website"
         locale="en_US"
       />
@@ -115,8 +125,17 @@ const Index = () => {
       />
       
       <HowItWorks />
+      <SecondChanceStats />
       <OpportunitiesCallout />
       <AboutSection />
+      
+      <StructuredData 
+        type="FAQ" 
+        faqs={homepageFAQs.map(faq => ({
+          question: faq.question,
+          answer: faq.answer
+        }))}
+      />
       
       <FAQSection 
         faqs={homepageFAQs}

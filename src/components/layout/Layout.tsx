@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import CookieConsent from '../common/CookieConsent';
 import BreadcrumbNavigation from '../navigation/BreadcrumbNavigation';
+import EnhancedBreadcrumbs from '../seo/EnhancedBreadcrumbs';
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,7 +17,7 @@ const Layout = ({ children, showBreadcrumbs = true, breadcrumbItems }: LayoutPro
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      {showBreadcrumbs && <BreadcrumbNavigation items={breadcrumbItems} />}
+      <EnhancedBreadcrumbs />
       <main className="flex-grow">
         {children}
       </main>
