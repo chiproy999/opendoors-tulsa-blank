@@ -2,18 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-export interface HousingData {
-  id: string;
-  title: string;
-  address: string;
-  rent: string;
-  bedrooms: number;
-  description: string;
-  convictionExclusions: string[];
-  slug: string;
-  postedAt: string;
-}
+import { HousingData } from '@/types';
 
 interface HousingCardProps {
   housing: HousingData;

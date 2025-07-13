@@ -2,18 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-export interface JobData {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  salaryRange: string;
-  description: string;
-  convictionExclusions: string[];
-  slug: string;
-  postedAt: string;
-}
+import { JobData } from '@/types';
 
 interface JobCardProps {
   job: JobData;
