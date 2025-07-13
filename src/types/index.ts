@@ -12,12 +12,20 @@ export interface JobData extends BaseListingData {
   company: string;
   location: string;
   salaryRange: string;
+  employmentType?: string;
+  requirements?: string;
+  benefits?: string;
 }
 
 export interface HousingData extends BaseListingData {
   address: string;
   rent: string;
   bedrooms: number;
+  bathrooms?: number;
+  squareFeet?: number;
+  amenities?: string;
+  petFriendly?: boolean;
+  utilitiesIncluded?: boolean;
 }
 
 export interface SearchFilters {

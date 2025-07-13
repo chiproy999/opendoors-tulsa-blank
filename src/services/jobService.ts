@@ -1,127 +1,227 @@
 import { JobData, SearchFilters, SearchResult } from '@/types';
-
-// Mock data
-const mockJobs: JobData[] = [
-  {
-    id: '1',
-    title: 'Warehouse Associate',
-    company: 'Global Distribution Inc.',
-    location: 'Tulsa, OK',
-    salaryRange: '$15 - $18 per hour',
-    description: 'Looking for motivated individuals to join our warehouse team. Duties include picking and packing orders, inventory management, and general warehouse duties.',
-    convictionExclusions: [],
-    slug: 'warehouse-associate-global-distribution',
-    postedAt: '3 days ago'
-  },
-  {
-    id: '2',
-    title: 'Customer Service Representative',
-    company: 'Tulsa Call Center Solutions',
-    location: 'Tulsa, OK',
-    salaryRange: '$14 - $16 per hour',
-    description: 'Join our growing call center team. We provide full training and opportunities for advancement. Great communication skills required.',
-    convictionExclusions: ['violent felonies'],
-    slug: 'customer-service-representative-tulsa-call-center',
-    postedAt: '5 days ago'
-  },
-  {
-    id: '3',
-    title: 'Line Cook',
-    company: 'Downtown Grill',
-    location: 'Tulsa, OK',
-    salaryRange: '$16 - $20 per hour',
-    description: 'Experienced line cook needed for busy restaurant. Prepare food to specification, maintain cleanliness and food safety standards.',
-    convictionExclusions: [],
-    slug: 'line-cook-downtown-grill',
-    postedAt: '1 week ago'
-  },
-  {
-    id: '4',
-    title: 'Administrative Assistant',
-    company: 'Tulsa Legal Services',
-    location: 'Tulsa, OK',
-    salaryRange: '$17 - $20 per hour',
-    description: 'Supporting our legal team with administrative tasks, scheduling, and client communication. Must be detail-oriented and professional.',
-    convictionExclusions: ['financial crimes'],
-    slug: 'administrative-assistant-tulsa-legal',
-    postedAt: '2 weeks ago'
-  },
-  {
-    id: '5',
-    title: 'Delivery Driver',
-    company: 'Swift Couriers',
-    location: 'Tulsa, OK',
-    salaryRange: '$16 - $22 per hour',
-    description: 'Local delivery driver needed. Must have clean driving record for the past 3 years. Company vehicle provided.',
-    convictionExclusions: ['DUI', 'reckless driving'],
-    slug: 'delivery-driver-swift-couriers',
-    postedAt: '2 days ago'
-  },
-  {
-    id: '6',
-    title: 'Manufacturing Technician',
-    company: 'Tulsa Industrial Products',
-    location: 'Tulsa, OK',
-    salaryRange: '$18 - $22 per hour',
-    description: 'Entry-level position in manufacturing. Will train the right candidate. Looking for reliable individuals ready to learn and grow with our company.',
-    convictionExclusions: [],
-    slug: 'manufacturing-technician-tulsa-industrial',
-    postedAt: '1 week ago'
-  }
-];
+import { supabase } from '@/integrations/supabase/client';
 
 export class JobService {
   static async getAllJobs(): Promise<SearchResult<JobData>> {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
-    return {
-      data: mockJobs,
-      total: mockJobs.length,
-      loading: false
-    };
+    try {
+      const { data, error, count } = await supabase
+        .from('job_listings')
+        .select('*', { count: 'exact' })
+        .eq('is_active', true)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      const jobs: JobData[] = data.map(job => ({
+        id: job.id,
+        title: job.title,
+        company: job.company,
+        location: job.location,
+        salaryRange: job.salary_range || '',
+        description: job.description,
+        employmentType: job.employment_type,
+        requirements: job.requirements || '',
+        benefits: job.benefits || '',
+        convictionExclusions: [], // Can be enhanced later
+        slug: job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        postedAt: new Date(job.created_at).toLocaleDateString()
+      }));
+
+      return {
+        data: jobs,
+        total: count || 0,
+        loading: false
+      };
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+      return {
+        data: [],
+        total: 0,
+        loading: false,
+        error: error instanceof Error ? error.message : 'Failed to fetch jobs'
+      };
+    }
   }
 
   static async searchJobs(filters: SearchFilters): Promise<SearchResult<JobData>> {
-    await new Promise(resolve => setTimeout(resolve, 200));
-    
-    const filtered = mockJobs.filter(job => {
-      const matchesQuery = !filters.query || 
-        job.title.toLowerCase().includes(filters.query.toLowerCase()) || 
-        job.company.toLowerCase().includes(filters.query.toLowerCase()) ||
-        job.description.toLowerCase().includes(filters.query.toLowerCase());
-        
-      const matchesLocation = !filters.location || 
-        job.location.toLowerCase().includes(filters.location.toLowerCase());
-        
-      return matchesQuery && matchesLocation;
-    });
-    
-    return {
-      data: filtered,
-      total: filtered.length,
-      loading: false
-    };
+    try {
+      let query = supabase
+        .from('job_listings')
+        .select('*', { count: 'exact' })
+        .eq('is_active', true);
+
+      if (filters.query) {
+        query = query.or(`title.ilike.%${filters.query}%,company.ilike.%${filters.query}%,description.ilike.%${filters.query}%`);
+      }
+
+      if (filters.location) {
+        query = query.ilike('location', `%${filters.location}%`);
+      }
+
+      const { data, error, count } = await query.order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      const jobs: JobData[] = data.map(job => ({
+        id: job.id,
+        title: job.title,
+        company: job.company,
+        location: job.location,
+        salaryRange: job.salary_range || '',
+        description: job.description,
+        employmentType: job.employment_type,
+        requirements: job.requirements || '',
+        benefits: job.benefits || '',
+        convictionExclusions: [],
+        slug: job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        postedAt: new Date(job.created_at).toLocaleDateString()
+      }));
+
+      return {
+        data: jobs,
+        total: count || 0,
+        loading: false
+      };
+    } catch (error) {
+      console.error('Error searching jobs:', error);
+      return {
+        data: [],
+        total: 0,
+        loading: false,
+        error: error instanceof Error ? error.message : 'Failed to search jobs'
+      };
+    }
   }
 
   static async getJobBySlug(slug: string): Promise<JobData | null> {
-    await new Promise(resolve => setTimeout(resolve, 100));
-    return mockJobs.find(job => job.slug === slug) || null;
+    try {
+      const { data, error } = await supabase
+        .from('job_listings')
+        .select('*')
+        .eq('is_active', true)
+        .limit(1);
+
+      if (error) throw error;
+
+      const job = data.find(j => j.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug);
+      
+      if (!job) return null;
+
+      return {
+        id: job.id,
+        title: job.title,
+        company: job.company,
+        location: job.location,
+        salaryRange: job.salary_range || '',
+        description: job.description,
+        employmentType: job.employment_type,
+        requirements: job.requirements || '',
+        benefits: job.benefits || '',
+        convictionExclusions: [],
+        slug: job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        postedAt: new Date(job.created_at).toLocaleDateString()
+      };
+    } catch (error) {
+      console.error('Error fetching job by slug:', error);
+      return null;
+    }
   }
 
-  // Placeholder for future Supabase integration
   static async createJob(jobData: Omit<JobData, 'id' | 'slug' | 'postedAt'>): Promise<JobData> {
-    // TODO: Implement Supabase integration
-    throw new Error('Not implemented - requires Supabase integration');
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error('User not authenticated');
+
+      const { data, error } = await supabase
+        .from('job_listings')
+        .insert({
+          title: jobData.title,
+          company: jobData.company,
+          location: jobData.location,
+          salary_range: jobData.salaryRange,
+          description: jobData.description,
+          employment_type: jobData.employmentType || 'full-time',
+          requirements: jobData.requirements,
+          benefits: jobData.benefits,
+          employer_id: user.id
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      return {
+        id: data.id,
+        title: data.title,
+        company: data.company,
+        location: data.location,
+        salaryRange: data.salary_range || '',
+        description: data.description,
+        employmentType: data.employment_type,
+        requirements: data.requirements || '',
+        benefits: data.benefits || '',
+        convictionExclusions: [],
+        slug: data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        postedAt: new Date(data.created_at).toLocaleDateString()
+      };
+    } catch (error) {
+      console.error('Error creating job:', error);
+      throw error;
+    }
   }
 
   static async updateJob(id: string, jobData: Partial<JobData>): Promise<JobData> {
-    // TODO: Implement Supabase integration
-    throw new Error('Not implemented - requires Supabase integration');
+    try {
+      const updateData: any = {};
+      if (jobData.title) updateData.title = jobData.title;
+      if (jobData.company) updateData.company = jobData.company;
+      if (jobData.location) updateData.location = jobData.location;
+      if (jobData.salaryRange) updateData.salary_range = jobData.salaryRange;
+      if (jobData.description) updateData.description = jobData.description;
+      if (jobData.employmentType) updateData.employment_type = jobData.employmentType;
+      if (jobData.requirements) updateData.requirements = jobData.requirements;
+      if (jobData.benefits) updateData.benefits = jobData.benefits;
+
+      const { data, error } = await supabase
+        .from('job_listings')
+        .update(updateData)
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      return {
+        id: data.id,
+        title: data.title,
+        company: data.company,
+        location: data.location,
+        salaryRange: data.salary_range || '',
+        description: data.description,
+        employmentType: data.employment_type,
+        requirements: data.requirements || '',
+        benefits: data.benefits || '',
+        convictionExclusions: [],
+        slug: data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+        postedAt: new Date(data.created_at).toLocaleDateString()
+      };
+    } catch (error) {
+      console.error('Error updating job:', error);
+      throw error;
+    }
   }
 
   static async deleteJob(id: string): Promise<void> {
-    // TODO: Implement Supabase integration
-    throw new Error('Not implemented - requires Supabase integration');
+    try {
+      const { error } = await supabase
+        .from('job_listings')
+        .update({ is_active: false })
+        .eq('id', id);
+
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error deleting job:', error);
+      throw error;
+    }
   }
 }

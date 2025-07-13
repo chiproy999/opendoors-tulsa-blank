@@ -52,8 +52,9 @@ const App = () => {
                   <Route path="/accessibility" element={<AccessibilityPage />} />
                   
                   {/* Auth routes */}
-                  <Route path="/auth/login" element={<LoginPage />} />
-                  <Route path="/auth/register" element={<RegisterPage />} />
+                  <Route path="/auth" element={<LoginPage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
                   
                   {/* Admin routes - Protected */}
                   <Route path="/admin" element={
