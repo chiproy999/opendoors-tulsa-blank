@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from '../common/LanguageToggle';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage } from '@/context/LanguageContext';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +19,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
   const { user, isAuthenticated, logout } = useAuth();
+  const { t } = useLanguage();
 
   const handleLogout = async () => {
     try {
@@ -64,18 +67,18 @@ const Navbar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 transition-colors flex items-center">
-                  Resources <ChevronDown className="ml-1 h-4 w-4" />
+                  {t('nav.resources')} <ChevronDown className="ml-1 h-4 w-4" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem asChild>
-                  <Link to="/jobs" className="cursor-pointer">Jobs</Link>
+                  <Link to="/jobs" className="cursor-pointer">{t('nav.jobs')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/housing" className="cursor-pointer">Housing</Link>
+                  <Link to="/housing" className="cursor-pointer">{t('nav.housing')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/resources" className="cursor-pointer">Resources</Link>
+                  <Link to="/resources" className="cursor-pointer">{t('nav.resources')}</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -84,17 +87,18 @@ const Navbar = () => {
               onClick={() => scrollToSection('about')} 
               className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 transition-colors"
             >
-              About
+              {t('nav.about')}
             </button>
             
             <button 
               onClick={() => scrollToSection('contact')} 
               className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 transition-colors"
             >
-              Contact
+              {t('nav.contact')}
             </button>
 
-            <div className="ml-2">
+            <div className="ml-2 flex items-center space-x-2">
+              <LanguageToggle />
               <ThemeToggle />
             </div>
             
@@ -108,23 +112,24 @@ const Navbar = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem className="text-sm">
-                    Signed in as {user?.email}
+                    {t('nav.signedInAs')} {user?.email}
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={handleLogout} className="text-sm">
                     <LogOut className="h-4 w-4 mr-2" />
-                    Sign out
+                    {t('nav.signOut')}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
               <Button asChild size="sm" className="ml-2">
-                <Link to="/auth">Sign In</Link>
+                <Link to="/auth">{t('nav.signIn')}</Link>
               </Button>
             )}
           </div>
 
-          {/* Mobile menu button and theme toggle */}
+          {/* Mobile menu button and toggles */}
           <div className="md:hidden flex items-center space-x-2">
+            <LanguageToggle />
             <ThemeToggle />
             <button
               onClick={toggleMobileMenu}
@@ -149,33 +154,33 @@ const Navbar = () => {
               className="px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-gray-700"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Jobs
+              {t('nav.jobs')}
             </Link>
             <Link 
               to="/housing" 
               className="px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-gray-700"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Housing
+              {t('nav.housing')}
             </Link>
             <Link 
               to="/resources" 
               className="px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-gray-700"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Resources
+              {t('nav.resources')}
             </Link>
             <button 
               onClick={() => scrollToSection('about')}
               className="px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-gray-700 text-left"
             >
-              About
+              {t('nav.about')}
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
               className="px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-gray-700 text-left"
             >
-              Contact
+              {t('nav.contact')}
             </button>
           </div>
         </div>

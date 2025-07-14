@@ -13,6 +13,8 @@ const NewsletterPopup = () => {
   const [email, setEmail] = useState('');
   const [userType, setUserType] = useState<UserType>('job_seeker');
   const [hasSubscribed, setHasSubscribed] = useState(false);
+  const { t } = useLanguage();
+  const [hasSubscribed, setHasSubscribed] = useState(false);
 
   useEffect(() => {
     const hasSeenPopup = localStorage.getItem('hasSeenNewsletterPopup');
