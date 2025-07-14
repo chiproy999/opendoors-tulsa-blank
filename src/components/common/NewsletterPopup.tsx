@@ -9,6 +9,7 @@ type UserType = 'business_owner' | 'landlord' | 'job_seeker' | 'housing_seeker';
 const NewsletterPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [userType, setUserType] = useState<UserType>('job_seeker');
   const [hasSubscribed, setHasSubscribed] = useState(false);
@@ -33,7 +34,7 @@ const NewsletterPopup = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically send the data to your backend
-    console.log('Newsletter signup:', { firstName, email, userType });
+    console.log('Newsletter signup:', { firstName, lastName, email, userType });
     setHasSubscribed(true);
     setTimeout(() => {
       closePopup();
@@ -66,6 +67,16 @@ const NewsletterPopup = () => {
                   placeholder="First Name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   required
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
