@@ -154,28 +154,79 @@
 
   /* Enhanced animations */
   @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg);
+      opacity: 0.6;
+    }
+    25% { 
+      transform: translateY(-15px) rotate(1deg);
+      opacity: 0.7;
+    }
+    50% { 
+      transform: translateY(-25px) rotate(-0.5deg);
+      opacity: 0.8;
+    }
+    75% { 
+      transform: translateY(-10px) rotate(0.5deg);
+      opacity: 0.7;
+    }
   }
 
   @keyframes float-delayed {
-    0%, 100% { transform: translateY(0px) rotate(180deg); }
-    50% { transform: translateY(-30px) rotate(360deg); }
+    0%, 100% { 
+      transform: translateY(0px) scale(1) rotate(0deg);
+      opacity: 0.4;
+    }
+    33% { 
+      transform: translateY(20px) scale(1.02) rotate(1deg);
+      opacity: 0.5;
+    }
+    66% { 
+      transform: translateY(-8px) scale(0.98) rotate(-1deg);
+      opacity: 0.6;
+    }
   }
 
   @keyframes fade-in {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% { 
+      opacity: 0; 
+      transform: translateY(40px) scale(0.95); 
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0) scale(1); 
+    }
   }
 
   @keyframes fade-in-delayed {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% { 
+      opacity: 0; 
+      transform: translateY(30px) scale(0.98); 
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0) scale(1); 
+    }
   }
 
   @keyframes pulse-slow {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.05); }
+    0%, 100% { 
+      opacity: 0.3; 
+      transform: scale(1) rotate(0deg); 
+    }
+    50% { 
+      opacity: 0.7; 
+      transform: scale(1.08) rotate(1deg); 
+    }
+  }
+
+  @keyframes subtle-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.2), 0 0 40px rgba(239, 68, 68, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(239, 68, 68, 0.4), 0 0 60px rgba(239, 68, 68, 0.2);
+    }
   }
 
   .animate-float {
@@ -199,5 +250,9 @@
 
   .animate-pulse-slow {
     animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  .animate-subtle-glow {
+    animation: subtle-glow 3s ease-in-out infinite;
   }
 }
