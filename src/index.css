@@ -152,7 +152,7 @@
     box-shadow: var(--shadow-glow);
   }
 
-  /* Enhanced animations */
+  /* Hero-specific animations */
   @keyframes float {
     0%, 100% { 
       transform: translateY(0px) rotate(0deg);
@@ -220,15 +220,7 @@
     }
   }
 
-  @keyframes subtle-glow {
-    0%, 100% {
-      box-shadow: 0 0 20px rgba(239, 68, 68, 0.2), 0 0 40px rgba(239, 68, 68, 0.1);
-    }
-    50% {
-      box-shadow: 0 0 30px rgba(239, 68, 68, 0.4), 0 0 60px rgba(239, 68, 68, 0.2);
-    }
-  }
-
+  /* Animation utilities */
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -239,20 +231,26 @@
   }
 
   .animate-fade-in {
-    animation: fade-in 0.8s ease-out;
+    animation: fade-in 0.8s ease-out forwards;
   }
 
   .animate-fade-in-delayed {
-    animation: fade-in-delayed 1s ease-out;
+    animation: fade-in-delayed 1s ease-out forwards;
     animation-delay: 0.3s;
-    animation-fill-mode: both;
   }
 
   .animate-pulse-slow {
     animation: pulse-slow 4s ease-in-out infinite;
   }
 
-  .animate-subtle-glow {
-    animation: subtle-glow 3s ease-in-out infinite;
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-float-delayed,
+    .animate-fade-in,
+    .animate-fade-in-delayed,
+    .animate-pulse-slow {
+      animation: none;
+    }
   }
 }
