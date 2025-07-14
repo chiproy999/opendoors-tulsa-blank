@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -13,8 +12,8 @@ const NewsletterPopup = () => {
   const [email, setEmail] = useState('');
   const [userType, setUserType] = useState<UserType>('job_seeker');
   const [hasSubscribed, setHasSubscribed] = useState(false);
-  const { t } = useLanguage();
-  const [hasSubscribed, setHasSubscribed] = useState(false);
+  // Removed: const { t } = useLanguage(); - undefined hook
+  // Removed: duplicate hasSubscribed state declaration
 
   useEffect(() => {
     const hasSeenPopup = localStorage.getItem('hasSeenNewsletterPopup');
