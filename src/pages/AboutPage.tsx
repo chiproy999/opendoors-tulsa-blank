@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import Hero from '@/components/common/Hero';
+import aboutHeroBg from '@/assets/about-hero-bg.jpg';
 import { Separator } from '@/components/ui/separator';
 import { Card, CardContent } from '@/components/ui/card';
 import { Quote } from 'lucide-react';
@@ -19,6 +20,7 @@ const AboutPage = () => {
       <Hero
         title="About Open Doors Tulsa"
         subtitle="My mission and vision"
+        backgroundImage={aboutHeroBg}
       />
       
       <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">

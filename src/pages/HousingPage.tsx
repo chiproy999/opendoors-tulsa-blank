@@ -1,6 +1,7 @@
 
 import Layout from '@/components/layout/Layout';
 import Hero from '@/components/common/Hero';
+import housingHeroBg from '@/assets/housing-hero-bg.jpg';
 import HousingSearchBar from '@/components/housing/HousingSearchBar';
 import HousingCard from '@/components/housing/HousingCard';
 import LoadingCard from '@/components/common/LoadingCard';
@@ -27,7 +28,7 @@ const HousingPage = () => {
       <Hero
         title="Find Second-Chance Friendly Housing"
         subtitle="Browse housing options from landlords committed to fair housing practices in Tulsa."
-        backgroundImage="/placeholder.svg"
+        backgroundImage={housingHeroBg}
       />
       
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">

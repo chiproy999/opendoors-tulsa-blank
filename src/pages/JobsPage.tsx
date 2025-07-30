@@ -1,6 +1,7 @@
 
 import Layout from '@/components/layout/Layout';
 import Hero from '@/components/common/Hero';
+import jobsHeroBg from '@/assets/jobs-hero-bg.jpg';
 import JobSearchBar from '@/components/jobs/JobSearchBar';
 import JobCard from '@/components/jobs/JobCard';
 import LoadingCard from '@/components/common/LoadingCard';
@@ -27,7 +28,7 @@ const JobsPage = () => {
       <Hero
         title="Find Second-Chance Friendly Jobs"
         subtitle="Browse employment opportunities from employers committed to fair chance hiring in Tulsa."
-        backgroundImage="/placeholder.svg"
+        backgroundImage={jobsHeroBg}
       />
       
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
