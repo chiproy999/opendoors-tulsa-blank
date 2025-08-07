@@ -28,7 +28,7 @@ const HeroContent = ({
 }: HeroContentProps) => {
   return (
     <div className="relative max-w-4xl mx-auto text-center">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-white animate-fade-in">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-foreground animate-fade-in">
         <span className="bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent drop-shadow-lg">
           {title}
         </span>
