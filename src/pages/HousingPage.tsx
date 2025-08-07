@@ -34,15 +34,15 @@ const HousingPage = () => {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <HousingSearchBar onSearch={handleSearch} />
         
-        <Alert className="my-6 bg-blue-50 text-blue-800 border border-blue-200">
+        <Alert className="my-6 bg-green-50 text-green-800 border border-green-200">
           <InfoIcon className="h-4 w-4 mr-2" />
           <AlertDescription>
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
               <span>
-                These are example listings for demonstration purposes. Are you a landlord with second-chance friendly housing?
+                Welcome to our second-chance friendly housing platform! Are you a landlord committed to fair housing practices?
               </span>
               <Link to="/auth/register">
-                <Button className="whitespace-nowrap bg-tulsa-blue hover:bg-tulsa-blue-600">
+                <Button className="whitespace-nowrap bg-primary hover:bg-primary/90">
                   List Your Property
                 </Button>
               </Link>

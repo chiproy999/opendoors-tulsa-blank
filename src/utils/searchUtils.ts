@@ -8,13 +8,17 @@ export const createSearchFilters = (
   query?: string,
   location?: string,
   bedrooms?: string,
-  maxRent?: string
+  maxRent?: string,
+  salaryRange?: string,
+  employmentType?: string
 ): SearchFilters => {
   return {
     query: query ? normalizeSearchQuery(query) : undefined,
     location: location ? normalizeSearchQuery(location) : undefined,
     bedrooms,
-    maxRent
+    maxRent,
+    salaryRange,
+    employmentType
   };
 };
 

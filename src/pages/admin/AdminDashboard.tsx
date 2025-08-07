@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Briefcase, Building, User, Users } from 'lucide-react';
 import StatCard from '@/components/admin/StatCard';
 import QuickActionCard from '@/components/admin/QuickActionCard';
+import SeedDataManager from '@/components/admin/SeedDataManager';
 import { useAdminStats } from '@/hooks/useAdminStats';
 import { STAT_CONFIG, QUICK_ACTIONS } from '@/constants/adminConfig';
 import LoadingCard from '@/components/common/LoadingCard';
@@ -94,6 +95,10 @@ const AdminDashboard = () => {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="mt-6">
+        <SeedDataManager />
       </div>
     </AdminLayout>
   );

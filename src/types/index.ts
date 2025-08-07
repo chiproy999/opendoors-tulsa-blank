@@ -33,6 +33,8 @@ export interface SearchFilters {
   location?: string;
   bedrooms?: string;
   maxRent?: string;
+  salaryRange?: string;
+  employmentType?: string;
 }
 
 export interface SearchResult<T> {

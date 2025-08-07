@@ -2,8 +2,8 @@
 import Layout from '@/components/layout/Layout';
 import Hero from '@/components/common/Hero';
 import jobsHeroBg from '@/assets/jobs-hero-bg.jpg';
-import JobSearchBar from '@/components/jobs/JobSearchBar';
-import JobCard from '@/components/jobs/JobCard';
+import EnhancedJobSearchBar from '@/components/jobs/EnhancedJobSearchBar';
+import EnhancedJobCard from '@/components/jobs/EnhancedJobCard';
 import LoadingCard from '@/components/common/LoadingCard';
 import ErrorState from '@/components/common/ErrorState';
 import EmptyState from '@/components/common/EmptyState';
@@ -18,8 +18,8 @@ import { createSearchFilters } from '@/utils/searchUtils';
 const JobsPage = () => {
   const { jobs, total, loading, error, searchJobs, refetch } = useJobs();
   
-  const handleSearch = (query: string, location: string) => {
-    const filters = createSearchFilters(query, location);
+  const handleSearch = (query: string, location: string, salaryRange: string, employmentType: string) => {
+    const filters = createSearchFilters(query, location, undefined, undefined, salaryRange, employmentType);
     searchJobs(filters);
   };
   
@@ -32,17 +32,17 @@ const JobsPage = () => {
       />
       
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <JobSearchBar onSearch={handleSearch} />
+        <EnhancedJobSearchBar onSearch={handleSearch} />
         
-        <Alert className="my-6 bg-blue-50 text-blue-800 border border-blue-200">
+        <Alert className="my-6 bg-green-50 text-green-800 border border-green-200">
           <InfoIcon className="h-4 w-4 mr-2" />
           <AlertDescription>
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
               <span>
-                These are example listings for demonstration purposes. Are you an employer with second-chance friendly jobs?
+                Welcome to our second-chance friendly job board! Are you an employer committed to fair chance hiring?
               </span>
               <Link to="/auth/register">
-                <Button className="whitespace-nowrap bg-tulsa-blue hover:bg-tulsa-blue-600">
+                <Button className="whitespace-nowrap bg-primary hover:bg-primary/90">
                   Post a Job
                 </Button>
               </Link>
@@ -73,7 +73,7 @@ const JobsPage = () => {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {jobs.map(job => (
-                    <JobCard key={job.id} job={job} />
+                    <EnhancedJobCard key={job.id} job={job} />
                   ))}
                 </div>
               )}
