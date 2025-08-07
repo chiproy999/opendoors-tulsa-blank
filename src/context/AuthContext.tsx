@@ -9,11 +9,14 @@ type UserRole = 'seeker' | 'employer' | 'landlord' | 'admin';
 interface UserProfile {
   id: string;
   user_id: string;
-  first_name: string | null;
-  last_name: string | null;
-  role: UserRole;
-  phone: string | null;
-  bio: string | null;
+  username: string | null;
+  avatar_url: string | null;
+  daily_generations_used: number;
+  total_generations: number;
+  referred_by: string | null;
+  referral_code: string;
+  subscription_tier: string;
+  stripe_customer_id: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -97,11 +100,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return {
       id: supabaseUser.id,
       email: supabaseUser.email || '',
-      firstName: profile.first_name,
-      lastName: profile.last_name,
-      role: profile.role,
-      phone: profile.phone,
-      bio: profile.bio,
+      firstName: profile.username || null,
+      lastName: null,
+      role: 'seeker' as UserRole, // Default role since not in current schema
+      phone: null,
+      bio: null,
       createdAt: profile.created_at,
     };
   };

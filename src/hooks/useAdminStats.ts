@@ -48,19 +48,18 @@ export const useAdminStats = (): AdminStats => {
 
         if (userError) throw userError;
 
-        // Fetch employers count
-        const { count: employerCount, error: employerError } = await supabase
-          .from('profiles')
-          .select('*', { count: 'exact', head: true })
-          .eq('role', 'employer');
+        // Fetch newsletter subscribers count
+        const { count: subscriberCount, error: subscriberError } = await supabase
+          .from('newsletter_subscriptions')
+          .select('*', { count: 'exact', head: true });
 
-        if (employerError) throw employerError;
+        if (subscriberError) throw subscriberError;
 
         setStats({
           totalJobs: jobCount || 0,
           totalHousing: housingCount || 0,
           totalUsers: userCount || 0,
-          totalEmployers: employerCount || 0,
+          totalEmployers: subscriberCount || 0,
           loading: false,
           error: null
         });
