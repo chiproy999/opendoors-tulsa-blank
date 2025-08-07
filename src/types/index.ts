@@ -6,6 +6,7 @@ export interface BaseListingData {
   convictionExclusions: string[];
   slug: string;
   postedAt: string;
+  isDemo?: boolean;
 }
 
 export interface JobData extends BaseListingData {

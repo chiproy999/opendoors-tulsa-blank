@@ -7,16 +7,19 @@ import EnhancedJobCard from '@/components/jobs/EnhancedJobCard';
 import LoadingCard from '@/components/common/LoadingCard';
 import ErrorState from '@/components/common/ErrorState';
 import EmptyState from '@/components/common/EmptyState';
+import DemoDisclaimer from '@/components/common/DemoDisclaimer';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { InfoIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useJobs } from '@/hooks/useJobs';
+import { useDemoData } from '@/hooks/useDemoData';
 import { createSearchFilters } from '@/utils/searchUtils';
 
 const JobsPage = () => {
   const { jobs, total, loading, error, searchJobs, refetch } = useJobs();
+  const { hasDemoData, loading: demoLoading } = useDemoData();
   
   const handleSearch = (query: string, location: string, salaryRange: string, employmentType: string) => {
     const filters = createSearchFilters(query, location, undefined, undefined, salaryRange, employmentType);
@@ -33,6 +36,8 @@ const JobsPage = () => {
       
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <EnhancedJobSearchBar onSearch={handleSearch} />
+        
+        {!demoLoading && hasDemoData && <DemoDisclaimer type="jobs" />}
         
         <Alert className="my-6 bg-green-50 text-green-800 border border-green-200">
           <InfoIcon className="h-4 w-4 mr-2" />

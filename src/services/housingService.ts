@@ -26,7 +26,8 @@ export class HousingService {
         utilitiesIncluded: house.utilities_included,
         convictionExclusions: [], // Can be enhanced later
         slug: house.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        postedAt: new Date(house.created_at).toLocaleDateString()
+        postedAt: new Date(house.created_at).toLocaleDateString(),
+        isDemo: (house as any).is_demo || false
       }));
 
       return {
@@ -82,7 +83,8 @@ export class HousingService {
         utilitiesIncluded: house.utilities_included,
         convictionExclusions: [],
         slug: house.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        postedAt: new Date(house.created_at).toLocaleDateString()
+        postedAt: new Date(house.created_at).toLocaleDateString(),
+        isDemo: (house as any).is_demo || false
       }));
 
       return {
@@ -129,7 +131,8 @@ export class HousingService {
         utilitiesIncluded: house.utilities_included,
         convictionExclusions: [],
         slug: house.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        postedAt: new Date(house.created_at).toLocaleDateString()
+        postedAt: new Date(house.created_at).toLocaleDateString(),
+        isDemo: (house as any).is_demo || false
       };
     } catch (error) {
       console.error('Error fetching housing by slug:', error);

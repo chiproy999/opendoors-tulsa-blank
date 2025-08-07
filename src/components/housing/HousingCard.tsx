@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HousingData } from '@/types';
+import DemoLabel from '@/components/common/DemoLabel';
 
 interface HousingCardProps {
   housing: HousingData;
@@ -13,9 +14,12 @@ const HousingCard = ({ housing }: HousingCardProps) => {
     <Link to={`/housing/${housing.slug}`}>
       <Card className="h-full transition-all hover:shadow-md hover:border-tulsa-blue-200">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-tulsa-blue-700">
-            {housing.title}
-          </CardTitle>
+          <div className="flex items-start gap-2 mb-2">
+            <CardTitle className="text-xl font-semibold text-tulsa-blue-700 flex-1">
+              {housing.title}
+            </CardTitle>
+            {housing.isDemo && <DemoLabel className="flex-shrink-0" />}
+          </div>
           <div className="text-gray-600 font-medium">{housing.address}</div>
         </CardHeader>
         <CardContent className="space-y-4">

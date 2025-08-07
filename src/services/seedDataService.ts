@@ -18,7 +18,8 @@ export class SeedDataService {
         requirements: "Ability to lift 50lbs, basic math skills, reliable transportation",
         benefits: "Health insurance, paid time off, advancement opportunities",
         employer_id: employerId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       },
       {
         title: "Customer Service Representative",
@@ -30,7 +31,8 @@ export class SeedDataService {
         requirements: "High school diploma, good communication skills, computer literacy",
         benefits: "Medical, dental, vision, 401k matching",
         employer_id: employerId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       },
       {
         title: "Kitchen Staff",
@@ -42,7 +44,8 @@ export class SeedDataService {
         requirements: "Food handler's permit (we'll help you get it), punctuality, teamwork",
         benefits: "Flexible scheduling, meal discounts, skill training",
         employer_id: employerId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       },
       {
         title: "Construction Laborer",
@@ -54,7 +57,8 @@ export class SeedDataService {
         requirements: "Physical fitness, willingness to learn, safety-conscious",
         benefits: "Health insurance, tools provided, apprenticeship opportunities",
         employer_id: employerId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       },
       {
         title: "Retail Sales Associate",
@@ -66,7 +70,8 @@ export class SeedDataService {
         requirements: "Customer service attitude, basic cash handling, retail experience preferred",
         benefits: "Employee discounts, flexible hours, community impact",
         employer_id: employerId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       },
       {
         title: "Delivery Driver",
@@ -78,7 +83,8 @@ export class SeedDataService {
         requirements: "Valid driver's license, clean driving record (3+ years), own vehicle",
         benefits: "Gas allowance, phone stipend, performance bonuses",
         employer_id: employerId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       }
     ];
 
@@ -112,7 +118,8 @@ export class SeedDataService {
         pet_friendly: true,
         utilities_included: false,
         landlord_id: landlordId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       },
       {
         title: "Studio Apartment - Downtown",
@@ -126,7 +133,8 @@ export class SeedDataService {
         pet_friendly: false,
         utilities_included: true,
         landlord_id: landlordId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       },
       {
         title: "3BR Family Home",
@@ -140,7 +148,8 @@ export class SeedDataService {
         pet_friendly: true,
         utilities_included: false,
         landlord_id: landlordId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       },
       {
         title: "1BR Senior-Friendly Unit", 
@@ -154,7 +163,8 @@ export class SeedDataService {
         pet_friendly: true,
         utilities_included: true,
         landlord_id: landlordId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       },
       {
         title: "Shared Housing Program",
@@ -168,7 +178,8 @@ export class SeedDataService {
         pet_friendly: false,
         utilities_included: true,
         landlord_id: landlordId,
-        is_active: true
+        is_active: true,
+        is_demo: true
       }
     ];
 

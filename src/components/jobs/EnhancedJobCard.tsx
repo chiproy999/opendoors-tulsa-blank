@@ -5,6 +5,7 @@ import { MapPin, DollarSign, Clock, Heart, ExternalLink } from 'lucide-react';
 import { JobData } from '@/types';
 import { formatDistanceToNow } from 'date-fns';
 import { useSavedListings } from '@/hooks/useSavedListings';
+import DemoLabel from '@/components/common/DemoLabel';
 
 interface EnhancedJobCardProps {
   job: JobData;
@@ -48,9 +49,12 @@ const EnhancedJobCard = ({ job }: EnhancedJobCardProps) => {
       <CardHeader className="pb-3">
         <div className="flex justify-between items-start">
           <div className="flex-1 pr-8">
-            <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-              {job.title}
-            </CardTitle>
+            <div className="flex items-start gap-2 mb-1">
+              <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors flex-1">
+                {job.title}
+              </CardTitle>
+              {job.isDemo && <DemoLabel className="flex-shrink-0" />}
+            </div>
             <CardDescription className="font-medium text-muted-foreground mt-1">
               {job.company}
             </CardDescription>

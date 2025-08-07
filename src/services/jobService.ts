@@ -24,7 +24,8 @@ export class JobService {
         benefits: job.benefits || '',
         convictionExclusions: [], // Can be enhanced later
         slug: job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        postedAt: new Date(job.created_at).toLocaleDateString()
+        postedAt: new Date(job.created_at).toLocaleDateString(),
+        isDemo: (job as any).is_demo || false
       }));
 
       return {
@@ -74,7 +75,8 @@ export class JobService {
         benefits: job.benefits || '',
         convictionExclusions: [],
         slug: job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        postedAt: new Date(job.created_at).toLocaleDateString()
+        postedAt: new Date(job.created_at).toLocaleDateString(),
+        isDemo: (job as any).is_demo || false
       }));
 
       return {
@@ -119,7 +121,8 @@ export class JobService {
         benefits: job.benefits || '',
         convictionExclusions: [],
         slug: job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        postedAt: new Date(job.created_at).toLocaleDateString()
+        postedAt: new Date(job.created_at).toLocaleDateString(),
+        isDemo: (job as any).is_demo || false
       };
     } catch (error) {
       console.error('Error fetching job by slug:', error);

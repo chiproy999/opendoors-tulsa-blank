@@ -7,16 +7,19 @@ import HousingCard from '@/components/housing/HousingCard';
 import LoadingCard from '@/components/common/LoadingCard';
 import ErrorState from '@/components/common/ErrorState';
 import EmptyState from '@/components/common/EmptyState';
+import DemoDisclaimer from '@/components/common/DemoDisclaimer';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { InfoIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useHousing } from '@/hooks/useHousing';
+import { useDemoData } from '@/hooks/useDemoData';
 import { createSearchFilters } from '@/utils/searchUtils';
 
 const HousingPage = () => {
   const { housing, total, loading, error, searchHousing, refetch } = useHousing();
+  const { hasDemoData, loading: demoLoading } = useDemoData();
   
   const handleSearch = (query: string, bedrooms: string, maxRent: string) => {
     const filters = createSearchFilters(query, undefined, bedrooms, maxRent);
