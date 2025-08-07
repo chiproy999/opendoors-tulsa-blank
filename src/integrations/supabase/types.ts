@@ -10,227 +10,142 @@ export type Database = {
   // Allows to automatically instanciate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "12.2.12 (cd3cf9e)"
   }
   public: {
     Tables: {
-      admin_audit_log: {
-        Row: {
-          action: string
-          admin_user_id: string
-          created_at: string
-          id: string
-          new_values: Json | null
-          old_values: Json | null
-          target_id: string | null
-          target_table: string | null
-        }
-        Insert: {
-          action: string
-          admin_user_id: string
-          created_at?: string
-          id?: string
-          new_values?: Json | null
-          old_values?: Json | null
-          target_id?: string | null
-          target_table?: string | null
-        }
-        Update: {
-          action?: string
-          admin_user_id?: string
-          created_at?: string
-          id?: string
-          new_values?: Json | null
-          old_values?: Json | null
-          target_id?: string | null
-          target_table?: string | null
-        }
-        Relationships: []
-      }
-      contact_submissions: {
+      generations: {
         Row: {
           created_at: string
-          email: string
+          generated_image_url: string
+          generation_cost: number
           id: string
-          inquiry_type: string | null
-          message: string
-          name: string
-          subject: string
+          original_image_url: string
+          prompt_used: string
+          style_name: string
+          user_id: string
         }
         Insert: {
           created_at?: string
-          email: string
+          generated_image_url: string
+          generation_cost?: number
           id?: string
-          inquiry_type?: string | null
-          message: string
-          name: string
-          subject: string
+          original_image_url: string
+          prompt_used: string
+          style_name: string
+          user_id: string
         }
         Update: {
           created_at?: string
-          email?: string
+          generated_image_url?: string
+          generation_cost?: number
           id?: string
-          inquiry_type?: string | null
-          message?: string
-          name?: string
-          subject?: string
-        }
-        Relationships: []
-      }
-      housing_listings: {
-        Row: {
-          address: string
-          amenities: string | null
-          bathrooms: number
-          bedrooms: number
-          created_at: string
-          description: string
-          id: string
-          is_active: boolean
-          landlord_id: string
-          pet_friendly: boolean
-          rent_amount: number
-          square_feet: number | null
-          title: string
-          updated_at: string
-          utilities_included: boolean
-        }
-        Insert: {
-          address: string
-          amenities?: string | null
-          bathrooms: number
-          bedrooms: number
-          created_at?: string
-          description: string
-          id?: string
-          is_active?: boolean
-          landlord_id: string
-          pet_friendly?: boolean
-          rent_amount: number
-          square_feet?: number | null
-          title: string
-          updated_at?: string
-          utilities_included?: boolean
-        }
-        Update: {
-          address?: string
-          amenities?: string | null
-          bathrooms?: number
-          bedrooms?: number
-          created_at?: string
-          description?: string
-          id?: string
-          is_active?: boolean
-          landlord_id?: string
-          pet_friendly?: boolean
-          rent_amount?: number
-          square_feet?: number | null
-          title?: string
-          updated_at?: string
-          utilities_included?: boolean
-        }
-        Relationships: []
-      }
-      job_listings: {
-        Row: {
-          benefits: string | null
-          company: string
-          created_at: string
-          description: string
-          employer_id: string
-          employment_type: string
-          id: string
-          is_active: boolean
-          location: string
-          requirements: string | null
-          salary_range: string | null
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          benefits?: string | null
-          company: string
-          created_at?: string
-          description: string
-          employer_id: string
-          employment_type?: string
-          id?: string
-          is_active?: boolean
-          location: string
-          requirements?: string | null
-          salary_range?: string | null
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          benefits?: string | null
-          company?: string
-          created_at?: string
-          description?: string
-          employer_id?: string
-          employment_type?: string
-          id?: string
-          is_active?: boolean
-          location?: string
-          requirements?: string | null
-          salary_range?: string | null
-          title?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      newsletter_subscriptions: {
-        Row: {
-          email: string
-          id: string
-          is_active: boolean
-          subscribed_at: string
-        }
-        Insert: {
-          email: string
-          id?: string
-          is_active?: boolean
-          subscribed_at?: string
-        }
-        Update: {
-          email?: string
-          id?: string
-          is_active?: boolean
-          subscribed_at?: string
+          original_image_url?: string
+          prompt_used?: string
+          style_name?: string
+          user_id?: string
         }
         Relationships: []
       }
       profiles: {
         Row: {
-          bio: string | null
+          avatar_url: string | null
           created_at: string
-          first_name: string | null
+          daily_generations_used: number
           id: string
-          last_name: string | null
-          phone: string | null
-          role: Database["public"]["Enums"]["user_role"]
+          referral_code: string
+          referred_by: string | null
+          stripe_customer_id: string | null
+          subscription_tier: string
+          total_generations: number
+          updated_at: string
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          daily_generations_used?: number
+          id?: string
+          referral_code?: string
+          referred_by?: string | null
+          stripe_customer_id?: string | null
+          subscription_tier?: string
+          total_generations?: number
+          updated_at?: string
+          user_id: string
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          daily_generations_used?: number
+          id?: string
+          referral_code?: string
+          referred_by?: string | null
+          stripe_customer_id?: string | null
+          subscription_tier?: string
+          total_generations?: number
+          updated_at?: string
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_referred_by_fkey"
+            columns: ["referred_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      referral_bonuses: {
+        Row: {
+          bonus_generations: number
+          claimed_at: string
+          id: string
+          referred_user_id: string
+          referrer_user_id: string
+        }
+        Insert: {
+          bonus_generations?: number
+          claimed_at?: string
+          id?: string
+          referred_user_id: string
+          referrer_user_id: string
+        }
+        Update: {
+          bonus_generations?: number
+          claimed_at?: string
+          id?: string
+          referred_user_id?: string
+          referrer_user_id?: string
+        }
+        Relationships: []
+      }
+      usage_quotas: {
+        Row: {
+          created_at: string
+          daily_limit: number
+          id: string
+          last_reset_date: string
           updated_at: string
           user_id: string
         }
         Insert: {
-          bio?: string | null
           created_at?: string
-          first_name?: string | null
+          daily_limit?: number
           id?: string
-          last_name?: string | null
-          phone?: string | null
-          role?: Database["public"]["Enums"]["user_role"]
+          last_reset_date?: string
           updated_at?: string
           user_id: string
         }
         Update: {
-          bio?: string | null
           created_at?: string
-          first_name?: string | null
+          daily_limit?: number
           id?: string
-          last_name?: string | null
-          phone?: string | null
-          role?: Database["public"]["Enums"]["user_role"]
+          last_reset_date?: string
           updated_at?: string
           user_id?: string
         }
@@ -241,23 +156,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      is_admin: {
-        Args: Record<PropertyKey, never> | { user_id?: string }
-        Returns: boolean
-      }
-      log_admin_action: {
-        Args: {
-          action_type: string
-          table_name?: string
-          record_id?: string
-          old_data?: Json
-          new_data?: Json
-        }
+      reset_daily_usage: {
+        Args: Record<PropertyKey, never>
         Returns: undefined
       }
     }
     Enums: {
-      user_role: "seeker" | "employer" | "landlord" | "admin"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -384,8 +289,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      user_role: ["seeker", "employer", "landlord", "admin"],
-    },
+    Enums: {},
   },
 } as const
