@@ -14,7 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          inquiry_type: string
+          message: string
+          name: string
+          subject: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          inquiry_type: string
+          message: string
+          name: string
+          subject: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          inquiry_type?: string
+          message?: string
+          name?: string
+          subject?: string
+        }
+        Relationships: []
+      }
+      housing_listings: {
+        Row: {
+          address: string
+          amenities: string | null
+          bathrooms: number
+          bedrooms: number
+          created_at: string
+          description: string
+          id: string
+          is_active: boolean
+          is_demo: boolean
+          landlord_id: string | null
+          pet_friendly: boolean
+          rent_amount: number
+          square_feet: number | null
+          title: string
+          updated_at: string
+          utilities_included: boolean
+        }
+        Insert: {
+          address: string
+          amenities?: string | null
+          bathrooms?: number
+          bedrooms: number
+          created_at?: string
+          description: string
+          id?: string
+          is_active?: boolean
+          is_demo?: boolean
+          landlord_id?: string | null
+          pet_friendly?: boolean
+          rent_amount: number
+          square_feet?: number | null
+          title: string
+          updated_at?: string
+          utilities_included?: boolean
+        }
+        Update: {
+          address?: string
+          amenities?: string | null
+          bathrooms?: number
+          bedrooms?: number
+          created_at?: string
+          description?: string
+          id?: string
+          is_active?: boolean
+          is_demo?: boolean
+          landlord_id?: string | null
+          pet_friendly?: boolean
+          rent_amount?: number
+          square_feet?: number | null
+          title?: string
+          updated_at?: string
+          utilities_included?: boolean
+        }
+        Relationships: []
+      }
+      job_listings: {
+        Row: {
+          benefits: string | null
+          company: string
+          created_at: string
+          description: string
+          employer_id: string | null
+          employment_type: string
+          id: string
+          is_active: boolean
+          is_demo: boolean
+          location: string
+          requirements: string | null
+          salary_range: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          benefits?: string | null
+          company: string
+          created_at?: string
+          description: string
+          employer_id?: string | null
+          employment_type?: string
+          id?: string
+          is_active?: boolean
+          is_demo?: boolean
+          location: string
+          requirements?: string | null
+          salary_range?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          benefits?: string | null
+          company?: string
+          created_at?: string
+          description?: string
+          employer_id?: string | null
+          employment_type?: string
+          id?: string
+          is_active?: boolean
+          is_demo?: boolean
+          location?: string
+          requirements?: string | null
+          salary_range?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscriptions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          daily_generations_used: number
+          referral_code: string
+          referred_by: string | null
+          stripe_customer_id: string | null
+          subscription_tier: string
+          total_generations: number
+          updated_at: string
+          user_id: string
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          daily_generations_used?: number
+          referral_code?: string
+          referred_by?: string | null
+          stripe_customer_id?: string | null
+          subscription_tier?: string
+          total_generations?: number
+          updated_at?: string
+          user_id: string
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          daily_generations_used?: number
+          referral_code?: string
+          referred_by?: string | null
+          stripe_customer_id?: string | null
+          subscription_tier?: string
+          total_generations?: number
+          updated_at?: string
+          user_id?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
