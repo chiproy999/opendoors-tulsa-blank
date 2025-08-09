@@ -108,8 +108,7 @@ export class HousingService {
       const { data, error } = await supabase
         .from('housing_listings')
         .select('*')
-        .eq('is_active', true)
-        .limit(50);
+        .eq('is_active', true);
 
       if (error) throw error;
 

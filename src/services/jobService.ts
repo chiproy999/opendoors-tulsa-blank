@@ -100,8 +100,7 @@ export class JobService {
       const { data, error } = await supabase
         .from('job_listings')
         .select('*')
-        .eq('is_active', true)
-        .limit(1);
+        .eq('is_active', true);
 
       if (error) throw error;
 

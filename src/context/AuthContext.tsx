@@ -7,7 +7,6 @@ import { User as SupabaseUser, Session } from '@supabase/supabase-js';
 type UserRole = 'seeker' | 'employer' | 'landlord' | 'admin';
 
 interface UserProfile {
-  id: string;
   user_id: string;
   username: string | null;
   avatar_url: string | null;
