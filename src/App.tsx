@@ -9,6 +9,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
+import { ErrorBoundary } from "./components/common/ErrorBoundary";
 
 // Pages
 import Index from "./pages/Index";
@@ -27,13 +28,24 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminJobListings from "./pages/admin/AdminJobListings";
 import AdminHousingListings from "./pages/admin/AdminHousingListings";
 import AdminUserAccounts from "./pages/admin/AdminUserAccounts";
+import JobDetailPage from "./pages/JobDetailPage";
+import HousingDetailPage from "./pages/HousingDetailPage";
+
+// Create QueryClient instance outside of component to prevent recreation
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const App = () => {
-  // Create a new QueryClient instance
-  const queryClient = new QueryClient();
 
   return (
-    <React.StrictMode>
+    <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="light" storageKey="theme">
           <LanguageProvider>
@@ -45,7 +57,9 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/jobs" element={<JobsPage />} />
+                  <Route path="/jobs/:slug" element={<JobDetailPage />} />
                   <Route path="/housing" element={<HousingPage />} />
+                  <Route path="/housing/:slug" element={<HousingDetailPage />} />
                   <Route path="/resources" element={<ResourcesPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/contact" element={<ContactPage />} />
@@ -88,7 +102,7 @@ const App = () => {
           </LanguageProvider>
         </ThemeProvider>
       </QueryClientProvider>
-    </React.StrictMode>
+    </ErrorBoundary>
   );
 };
 

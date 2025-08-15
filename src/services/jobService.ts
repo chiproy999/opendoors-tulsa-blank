@@ -104,7 +104,16 @@ export class JobService {
 
       if (error) throw error;
 
-      const job = data.find(j => j.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug);
+      // Try multiple matching strategies
+      let job = data.find(j => j.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug);
+      
+      // If not found by title slug, try to extract ID from slug
+      if (!job) {
+        const idFromSlug = slug.split('-').pop();
+        if (idFromSlug && idFromSlug.length >= 8) {
+          job = data.find(j => j.id.includes(idFromSlug));
+        }
+      }
       
       if (!job) return null;
 

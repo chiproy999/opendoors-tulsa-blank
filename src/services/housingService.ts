@@ -112,7 +112,16 @@ export class HousingService {
 
       if (error) throw error;
 
-      const house = data.find(h => h.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug);
+      // Try multiple matching strategies
+      let house = data.find(h => h.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === slug);
+      
+      // If not found by title slug, try to extract ID from slug
+      if (!house) {
+        const idFromSlug = slug.split('-').pop();
+        if (idFromSlug && idFromSlug.length >= 8) {
+          house = data.find(h => h.id.includes(idFromSlug));
+        }
+      }
       
       if (!house) return null;
 

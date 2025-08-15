@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { JobData } from '@/types';
+import { generateSlug } from '@/utils/slugUtils';
 
 interface JobCardProps {
   job: JobData;
 }
 
 const JobCard = ({ job }: JobCardProps) => {
+  const slug = job.slug || generateSlug(job.title, job.id);
+  
   return (
-    <Link to={`/jobs/${job.slug}`}>
+    <Link to={`/jobs/${slug}`}>
       <Card className="h-full transition-all hover:shadow-md hover:border-tulsa-blue-200">
         <CardHeader>
           <CardTitle className="text-xl font-semibold text-tulsa-blue-700">

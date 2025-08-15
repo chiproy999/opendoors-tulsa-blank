@@ -4,14 +4,17 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Badge } from "@/components/ui/badge";
 import { HousingData } from '@/types';
 import DemoLabel from '@/components/common/DemoLabel';
+import { generateSlug } from '@/utils/slugUtils';
 
 interface HousingCardProps {
   housing: HousingData;
 }
 
 const HousingCard = ({ housing }: HousingCardProps) => {
+  const slug = housing.slug || generateSlug(housing.title, housing.id);
+  
   return (
-    <Link to={`/housing/${housing.slug}`}>
+    <Link to={`/housing/${slug}`}>
       <Card className="h-full transition-all hover:shadow-md hover:border-tulsa-blue-200">
         <CardHeader>
           <div className="flex items-start gap-2 mb-2">
