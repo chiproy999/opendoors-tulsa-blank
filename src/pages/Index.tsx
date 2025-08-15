@@ -6,6 +6,7 @@ import HowItWorks from '@/components/home/HowItWorks';
 import OpportunitiesCallout from '@/components/home/OpportunitiesCallout';
 import AboutSection from '@/components/home/AboutSection';
 import ContactSection from '@/components/home/ContactSection';
+import NewsletterSignup from '@/components/common/NewsletterSignup';
 import FAQSection from '@/components/common/FAQSection';
 import EnhancedSEOMeta from '@/components/seo/EnhancedSEOMeta';
 import StructuredData from '@/components/seo/StructuredData';
@@ -143,6 +144,7 @@ const Index = () => {
         className="bg-gray-50 dark:bg-gray-900"
       />
       
+      <NewsletterSignup />
       <ContactSection />
       
       <NewsletterPopup />
