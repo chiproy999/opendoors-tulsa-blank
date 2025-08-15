@@ -10,7 +10,7 @@ import NewsletterSignup from '@/components/common/NewsletterSignup';
 import FAQSection from '@/components/common/FAQSection';
 import EnhancedSEOMeta from '@/components/seo/EnhancedSEOMeta';
 import StructuredData from '@/components/seo/StructuredData';
-import EnhancedSitemapGenerator from '@/components/seo/EnhancedSitemapGenerator';
+// EnhancedSitemapGenerator removed due to runtime error
 import PerformanceOptimizer from '@/components/seo/PerformanceOptimizer';
 import SecondChanceStats from '@/components/seo/SecondChanceStats';
 import LocalSEOEnhancer from '@/components/seo/LocalSEOEnhancer';
@@ -87,7 +87,7 @@ const localBusinessData = {
 const Index = () => {
   return (
     <Layout>
-      <EnhancedSitemapGenerator />
+      {/* EnhancedSitemapGenerator temporarily removed */}
       <PerformanceOptimizer />
       <LocalSEOEnhancer />
       
