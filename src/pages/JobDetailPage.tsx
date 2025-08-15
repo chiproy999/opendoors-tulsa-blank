@@ -8,8 +8,12 @@ import { Separator } from '@/components/ui/separator';
 import LoadingCard from '@/components/common/LoadingCard';
 import ErrorState from '@/components/common/ErrorState';
 import DemoLabel from '@/components/common/DemoLabel';
+import FavoriteButton from '@/components/common/FavoriteButton';
+import DynamicSEOMeta from '@/components/seo/DynamicSEOMeta';
+import RichBreadcrumbs from '@/components/seo/RichBreadcrumbs';
 import { useJobBySlug } from '@/hooks/useJobs';
 import { formatDistanceToNow } from 'date-fns';
+import { createSlug } from '@/utils/slugUtils';
 
 const JobDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -38,9 +42,18 @@ const JobDetailPage = () => {
     );
   }
 
+  const canonicalUrl = `https://opendoorstulsa.com/jobs/${createSlug(job.title, job.id)}`;
+
   return (
     <Layout>
+      <DynamicSEOMeta 
+        type="job" 
+        data={job} 
+        canonicalUrl={canonicalUrl}
+      />
       <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <RichBreadcrumbs currentPage={job.title} data={job} type="job" />
+        
         <div className="mb-6">
           <Link to="/jobs">
             <Button variant="ghost" className="mb-4">
@@ -54,7 +67,7 @@ const JobDetailPage = () => {
           <CardHeader>
             <div className="flex justify-between items-start">
               <div className="flex-1">
-                <CardTitle className="text-2xl mb-2">{job.title}</CardTitle>
+                <h1 className="text-2xl mb-2 font-bold">{job.title}</h1>
                 {job.isDemo && <DemoLabel />}
                 <div className="flex flex-wrap gap-4 text-muted-foreground mb-4">
                   <div className="flex items-center gap-1">
@@ -91,7 +104,7 @@ const JobDetailPage = () => {
           
           <CardContent className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold mb-3">Job Description</h3>
+              <h2 className="text-lg font-semibold mb-3">Job Description</h2>
               <div className="prose prose-sm max-w-none">
                 <p className="text-muted-foreground whitespace-pre-line">{job.description}</p>
               </div>
@@ -126,9 +139,7 @@ const JobDetailPage = () => {
               <Button className="flex-1" size="lg">
                 Apply Now
               </Button>
-              <Button variant="outline" size="lg">
-                Save Job
-              </Button>
+              <FavoriteButton item={job} type="job" size="lg" />
             </div>
           </CardContent>
         </Card>

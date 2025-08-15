@@ -8,8 +8,12 @@ import { Separator } from '@/components/ui/separator';
 import LoadingCard from '@/components/common/LoadingCard';
 import ErrorState from '@/components/common/ErrorState';
 import DemoLabel from '@/components/common/DemoLabel';
+import FavoriteButton from '@/components/common/FavoriteButton';
+import DynamicSEOMeta from '@/components/seo/DynamicSEOMeta';
+import RichBreadcrumbs from '@/components/seo/RichBreadcrumbs';
 import { useHousingBySlug } from '@/hooks/useHousing';
 import { formatDistanceToNow } from 'date-fns';
+import { createSlug } from '@/utils/slugUtils';
 
 const HousingDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -38,9 +42,18 @@ const HousingDetailPage = () => {
     );
   }
 
+  const canonicalUrl = `https://opendoorstulsa.com/housing/${createSlug(housing.title, housing.id)}`;
+
   return (
     <Layout>
+      <DynamicSEOMeta 
+        type="housing" 
+        data={housing} 
+        canonicalUrl={canonicalUrl}
+      />
       <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <RichBreadcrumbs currentPage={housing.title} data={housing} type="housing" />
+        
         <div className="mb-6">
           <Link to="/housing">
             <Button variant="ghost" className="mb-4">
@@ -54,7 +67,7 @@ const HousingDetailPage = () => {
           <CardHeader>
             <div className="flex justify-between items-start">
               <div className="flex-1">
-                <CardTitle className="text-2xl mb-2">{housing.title}</CardTitle>
+                <h1 className="text-2xl mb-2 font-bold">{housing.title}</h1>
                 {housing.isDemo && <DemoLabel />}
                 <div className="flex flex-wrap gap-4 text-muted-foreground mb-4">
                   <div className="flex items-center gap-1">
@@ -97,7 +110,7 @@ const HousingDetailPage = () => {
           
           <CardContent className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold mb-3">Description</h3>
+              <h2 className="text-lg font-semibold mb-3">Description</h2>
               <div className="prose prose-sm max-w-none">
                 <p className="text-muted-foreground whitespace-pre-line">{housing.description}</p>
               </div>
@@ -143,9 +156,7 @@ const HousingDetailPage = () => {
               <Button className="flex-1" size="lg">
                 Contact Landlord
               </Button>
-              <Button variant="outline" size="lg">
-                Save Listing
-              </Button>
+              <FavoriteButton item={housing} type="housing" size="lg" />
             </div>
           </CardContent>
         </Card>

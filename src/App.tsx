@@ -10,6 +10,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
+import AnalyticsTracker from "./components/seo/AnalyticsTracker";
 
 // Pages
 import Index from "./pages/Index";
@@ -54,6 +55,7 @@ const App = () => {
                 <Toaster />
                 <Sonner />
                 <BrowserRouter>
+                <AnalyticsTracker />
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/jobs" element={<JobsPage />} />
