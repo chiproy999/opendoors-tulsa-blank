@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "13.0.4"
@@ -177,6 +177,7 @@ export type Database = {
           daily_generations_used: number
           referral_code: string
           referred_by: string | null
+          role: string | null
           stripe_customer_id: string | null
           subscription_tier: string
           total_generations: number
@@ -190,6 +191,7 @@ export type Database = {
           daily_generations_used?: number
           referral_code?: string
           referred_by?: string | null
+          role?: string | null
           stripe_customer_id?: string | null
           subscription_tier?: string
           total_generations?: number
@@ -203,6 +205,7 @@ export type Database = {
           daily_generations_used?: number
           referral_code?: string
           referred_by?: string | null
+          role?: string | null
           stripe_customer_id?: string | null
           subscription_tier?: string
           total_generations?: number
@@ -217,7 +220,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_current_user_role: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
