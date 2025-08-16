@@ -16,20 +16,32 @@ const HeroBackground = ({ backgroundImage }: HeroBackgroundProps) => {
 
   return (
     <>
-      {/* Main gradient background */}
-      <div className="absolute inset-0 bg-gradient-hero" />
+      {/* Enhanced gradient background with door opening effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-800/30 to-green-800/30" />
       
-      {/* Floating elements for visual interest */}
+      {/* Door opening animation effect */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-black/40 to-transparent origin-left transform animate-[slideLeft_2s_ease-out_forwards]" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-black/40 to-transparent origin-right transform animate-[slideRight_2s_ease-out_forwards]" />
+      </div>
+      
+      {/* Enhanced floating elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-400/10 rounded-full blur-xl animate-float" />
+        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-green-400/10 rounded-full blur-2xl animate-float-delayed" />
+        <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-purple-400/10 rounded-full blur-lg animate-float" style={{ animationDelay: '4s' }} />
+        <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-yellow-400/5 rounded-full blur-xl animate-float-delayed" />
+      </div>
+
+      {/* Door and key icons */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-black/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-black/10 rounded-full blur-3xl animate-float-delayed" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/10 rounded-full blur-2xl animate-pulse-slow" />
-        
-        {/* Geometric accent shapes */}
-        <div className="absolute top-32 right-20 w-16 h-16 bg-black/30 backdrop-blur-sm border border-white/20 rounded-lg rotate-12 animate-float" />
-        <div className="absolute bottom-32 left-20 w-12 h-12 bg-white/30 rounded-full animate-float-delayed" />
-        <div className="absolute top-1/3 left-1/4 w-8 h-8 bg-black/40 rounded-sm rotate-45 animate-pulse-slow" />
-        <div className="absolute bottom-1/3 right-1/4 w-6 h-6 bg-white/20 rounded-full animate-float" />
+        <div className="absolute top-20 right-20 w-12 h-16 border-2 border-white/20 rounded-lg opacity-60 animate-fade-in-delayed">
+          <div className="absolute top-1/2 right-1 w-1 h-1 bg-white/40 rounded-full" />
+        </div>
+        <div className="absolute bottom-32 left-16 w-8 h-4 border border-white/20 rounded-sm opacity-40 animate-fade-in-delayed" style={{ animationDelay: '1s' }}>
+          <div className="absolute -right-2 top-1/2 w-2 h-0.5 bg-white/20" />
+        </div>
       </div>
       
       {/* Subtle pattern overlay */}
