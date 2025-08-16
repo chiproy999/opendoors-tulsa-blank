@@ -100,7 +100,7 @@ export default {
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
-				display: ['Playfair Display', 'serif']
+				display: ['Montserrat', 'sans-serif']
 			},
 			keyframes: {
 				'accordion-down': {

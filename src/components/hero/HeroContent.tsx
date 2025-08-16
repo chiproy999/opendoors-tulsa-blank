@@ -28,15 +28,15 @@ const HeroContent = ({
 }: HeroContentProps) => {
   return (
     <div className="relative max-w-4xl mx-auto text-center">
-      <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight mb-8 animate-fade-in leading-none">
+      <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter mb-8 animate-fade-in leading-[0.85] selection:bg-red-300/30">
         <div className="relative">
-          <span className="bg-gradient-to-r from-white via-red-200 to-red-300 bg-clip-text text-transparent drop-shadow-2xl animate-pulse-slow block mb-2">
+          <span className="bg-gradient-to-r from-white via-red-200 to-red-300 bg-clip-text text-transparent drop-shadow-2xl animate-pulse-slow block mb-2 will-change-transform">
             Open Doors
           </span>
-          <span className="bg-gradient-to-r from-red-300 via-red-200 to-white bg-clip-text text-transparent drop-shadow-2xl block">
+          <span className="bg-gradient-to-r from-red-300 via-red-200 to-white bg-clip-text text-transparent drop-shadow-2xl block will-change-transform">
             to New Opportunities
           </span>
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 blur-3xl -z-10 animate-pulse"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-red-400/20 blur-3xl -z-10 animate-pulse will-change-transform"></div>
         </div>
       </h1>
       
