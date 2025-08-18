@@ -1,79 +1,9 @@
 
-import { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import Hero from '@/components/common/Hero';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { supabase } from '@/integrations/supabase/client';
+import { ContactForm } from '@/components/forms/ContactForm';
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    inquiryType: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSelectChange = (value: string) => {
-    setFormData(prev => ({ ...prev, inquiryType: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      // Save to Supabase database
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject,
-            inquiry_type: formData.inquiryType,
-            message: formData.message,
-          }
-        ]);
-
-      if (error) {
-        throw error;
-      }
-      
-      toast({
-        title: 'Message Sent!',
-        description: 'We\'ll get back to you as soon as possible.',
-      });
-      
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        inquiryType: '',
-        message: ''
-      });
-    } catch (error: any) {
-      console.error('Contact form error:', error);
-      toast({
-        title: 'Error',
-        description: 'There was a problem sending your message. Please try again.',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <Layout>
@@ -123,92 +53,7 @@ const ContactPage = () => {
           </div>
           
           {/* Contact Form */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                  Name
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                  Subject
-                </label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="inquiryType" className="block text-sm font-medium text-gray-700 mb-1">
-                  Inquiry Type
-                </label>
-                <Select value={formData.inquiryType} onValueChange={handleSelectChange}>
-                  <SelectTrigger id="inquiryType">
-                    <SelectValue placeholder="Select inquiry type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="general">General Question</SelectItem>
-                    <SelectItem value="employer">Employer Interest</SelectItem>
-                    <SelectItem value="housing">Housing Provider Interest</SelectItem>
-                    <SelectItem value="jobseeker">Job Seeker Support</SelectItem>
-                    <SelectItem value="tenant">Housing Seeker Support</SelectItem>
-                    <SelectItem value="partnership">Partnership Opportunity</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="resize-none"
-                />
-              </div>
-              
-              <Button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="w-full bg-tulsa-blue hover:bg-tulsa-blue-600"
-              >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </Button>
-            </form>
-          </div>
+          <ContactForm />
         </div>
       </div>
     </Layout>
