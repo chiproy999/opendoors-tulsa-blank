@@ -96,12 +96,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       return null;
     }
 
+    // Get user role from database function
+    const { data: roleData, error: roleError } = await supabase.rpc('get_current_user_role');
+    const userRole = roleError ? 'seeker' : (roleData as UserRole);
+
     return {
       id: supabaseUser.id,
       email: supabaseUser.email || '',
       firstName: profile.username || null,
       lastName: null,
-      role: 'seeker' as UserRole, // Default role since not in current schema
+      role: userRole,
       phone: null,
       bio: null,
       createdAt: profile.created_at,

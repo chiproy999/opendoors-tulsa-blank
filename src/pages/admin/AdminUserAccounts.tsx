@@ -1,5 +1,7 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 import AdminLayout from '@/components/layout/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,53 +9,60 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Link } from 'react-router-dom';
 import { Edit, Trash2, Plus, Search, UserCheck, UserX } from 'lucide-react';
 
-// Mock data
-const initialUsers = [
-  { 
-    id: '1', 
-    name: 'John Smith', 
-    email: 'john.smith@example.com',
-    type: 'Seeker',
-    joined: '2023-04-15',
-    status: 'Active'
-  },
-  { 
-    id: '2', 
-    name: 'Sarah Johnson', 
-    email: 'sarah.j@example.com',
-    type: 'Seeker',
-    joined: '2023-04-20',
-    status: 'Active'
-  },
-  { 
-    id: '3', 
-    name: 'TechCorp HR', 
-    email: 'hr@techcorp.com',
-    type: 'Employer',
-    joined: '2023-03-10',
-    status: 'Active'
-  },
-  { 
-    id: '4', 
-    name: 'City Properties', 
-    email: 'leasing@cityproperties.com',
-    type: 'Landlord',
-    joined: '2023-02-22',
-    status: 'Active'
-  },
-  { 
-    id: '5', 
-    name: 'Michael Brown', 
-    email: 'mbrown@example.com',
-    type: 'Seeker',
-    joined: '2023-05-01',
-    status: 'Inactive'
-  }
-];
+interface UserAccount {
+  id: string;
+  name: string;
+  email: string;
+  type: string;
+  joined: string;
+  status: 'Active' | 'Inactive';
+}
 
 const AdminUserAccounts = () => {
-  const [users, setUsers] = useState(initialUsers);
+  const [users, setUsers] = useState<UserAccount[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch users from Supabase
+  const fetchUsers = async () => {
+    try {
+      setIsLoading(true);
+      const { data: profiles, error } = await supabase
+        .from('profiles')
+        .select(`
+          user_id,
+          username,
+          role,
+          created_at
+        `);
+
+      if (error) throw error;
+
+      // Note: supabase.auth.admin.listUsers requires service role key
+      // For now, we'll use profile data only
+      const userAccounts: UserAccount[] = profiles?.map(profile => {
+        return {
+          id: profile.user_id,
+          name: profile.username || 'Unknown User',
+          email: 'Email access restricted',
+          type: profile.role || 'user',
+          joined: new Date(profile.created_at).toLocaleDateString(),
+          status: 'Active' as const
+        };
+      }) || [];
+
+      setUsers(userAccounts);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      toast.error('Failed to fetch user accounts');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
   
   const filteredUsers = users.filter(user => 
     user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -61,18 +70,43 @@ const AdminUserAccounts = () => {
     user.type.toLowerCase().includes(searchQuery.toLowerCase())
   );
   
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this user account?')) {
-      setUsers(users.filter(user => user.id !== id));
+      try {
+        // Delete profile record (auth user deletion requires service role)
+        const { error } = await supabase
+          .from('profiles')
+          .delete()
+          .eq('user_id', id);
+          
+        if (error) throw error;
+        
+        toast.success('User profile deleted successfully');
+        fetchUsers(); // Refresh the list
+      } catch (error) {
+        console.error('Error deleting user:', error);
+        toast.error('Failed to delete user account');
+      }
     }
   };
   
-  const toggleStatus = (id: string) => {
-    setUsers(users.map(user => 
-      user.id === id 
-        ? { ...user, status: user.status === 'Active' ? 'Inactive' : 'Active' }
-        : user
-    ));
+  const toggleUserRole = async (id: string, currentRole: string) => {
+    try {
+      const newRole = currentRole === 'admin' ? 'user' : 'admin';
+      
+      const { error } = await supabase
+        .from('profiles')
+        .update({ role: newRole })
+        .eq('user_id', id);
+        
+      if (error) throw error;
+      
+      toast.success(`User role updated to ${newRole}`);
+      fetchUsers(); // Refresh the list
+    } catch (error) {
+      console.error('Error updating user role:', error);
+      toast.error('Failed to update user role');
+    }
   };
   
   return (
@@ -107,26 +141,32 @@ const AdminUserAccounts = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredUsers.length > 0 ? (
+            {isLoading ? (
+              <TableRow>
+                <TableCell colSpan={6} className="text-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                  <p className="mt-2 text-muted-foreground">Loading users...</p>
+                </TableCell>
+              </TableRow>
+            ) : filteredUsers.length > 0 ? (
               filteredUsers.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell className="font-medium">{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell className="hidden md:table-cell">
                     <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      user.type === 'Seeker' ? 'bg-blue-100 text-blue-800' :
-                      user.type === 'Employer' ? 'bg-purple-100 text-purple-800' :
-                      'bg-orange-100 text-orange-800'
+                      user.type === 'admin' ? 'bg-red-100 text-red-800' :
+                      user.type === 'employer' ? 'bg-purple-100 text-purple-800' :
+                      user.type === 'landlord' ? 'bg-orange-100 text-orange-800' :
+                      'bg-blue-100 text-blue-800'
                     }`}>
                       {user.type}
                     </span>
                   </TableCell>
                   <TableCell className="hidden md:table-cell">{user.joined}</TableCell>
                   <TableCell>
-                    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      user.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                    }`}>
-                      {user.status}
+                    <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-green-100 text-green-800">
+                      Active
                     </span>
                   </TableCell>
                   <TableCell className="text-right">
@@ -134,26 +174,20 @@ const AdminUserAccounts = () => {
                       <Button 
                         size="sm" 
                         variant="ghost" 
-                        onClick={() => toggleStatus(user.id)}
-                        title={user.status === 'Active' ? 'Deactivate User' : 'Activate User'}
+                        onClick={() => toggleUserRole(user.id, user.type)}
+                        title={`Toggle admin role for ${user.name}`}
+                        className="text-purple-600 hover:text-purple-800"
                       >
-                        {user.status === 'Active' ? (
-                          <UserX className="h-4 w-4 text-gray-500 hover:text-gray-700" />
-                        ) : (
-                          <UserCheck className="h-4 w-4 text-green-500 hover:text-green-700" />
-                        )}
+                        <UserCheck className="h-4 w-4" />
                       </Button>
-                      <Link to={`/admin/users/edit/${user.id}`}>
-                        <Button size="sm" variant="ghost">
-                          <Edit className="h-4 w-4 text-gray-500 hover:text-gray-700" />
-                        </Button>
-                      </Link>
                       <Button 
                         size="sm" 
                         variant="ghost" 
                         onClick={() => handleDelete(user.id)}
+                        title={`Delete ${user.name}`}
+                        className="text-red-600 hover:text-red-800"
                       >
-                        <Trash2 className="h-4 w-4 text-red-500 hover:text-red-700" />
+                        <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
                   </TableCell>
