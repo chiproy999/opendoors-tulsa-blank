@@ -1,6 +1,18 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+    fbq: (...args: any[]) => void;
+    trackEvent: (action: string, category: string, label?: string, value?: number) => void;
+    trackJobView: (jobId: string, jobTitle: string) => void;
+    trackHousingView: (housingId: string, housingTitle: string) => void;
+    trackSearch: (query: string, type: 'job' | 'housing', resultsCount: number) => void;
+    trackFavorite: (itemId: string, type: 'job' | 'housing', action: 'add' | 'remove') => void;
+  }
+}
+
 interface AnalyticsEvent {
   action: string;
   category: string;
@@ -28,15 +40,21 @@ const AnalyticsTracker = () => {
       page
     };
 
-    // Store locally for now - in production, send to analytics service
+    // Store locally for development
     logEvent(event);
     
-    // Example: Send to Google Analytics (if implemented)
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('config', 'GA_MEASUREMENT_ID', {
+    // Send to Google Analytics 4
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'page_view', {
         page_title: document.title,
-        page_location: window.location.href
+        page_location: window.location.href,
+        page_path: page
       });
+    }
+
+    // Send to Meta Pixel
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'PageView');
     }
   };
 
@@ -56,9 +74,9 @@ const AnalyticsTracker = () => {
     console.log('Analytics Event:', event);
   };
 
-  // Expose tracking functions globally
+  // Enhanced tracking functions with GA4 and Meta Pixel integration
   useEffect(() => {
-    (window as any).trackEvent = (action: string, category: string, label?: string, value?: number) => {
+    window.trackEvent = (action: string, category: string, label?: string, value?: number) => {
       const event: AnalyticsEvent = {
         action,
         category,
@@ -67,24 +85,83 @@ const AnalyticsTracker = () => {
         timestamp: Date.now(),
         page: location.pathname
       };
+      
       logEvent(event);
+
+      // Send to Google Analytics 4
+      if (window.gtag) {
+        window.gtag('event', action, {
+          event_category: category,
+          event_label: label,
+          value: value
+        });
+      }
+
+      // Send to Meta Pixel for key events
+      if (window.fbq && ['search', 'job_view', 'housing_view', 'favorite_add'].includes(action)) {
+        const pixelEvent = action === 'search' ? 'Search' : 
+                          action.includes('view') ? 'ViewContent' : 
+                          action.includes('favorite') ? 'AddToWishlist' : 'Other';
+        
+        window.fbq('track', pixelEvent, {
+          content_category: category,
+          content_name: label,
+          value: value
+        });
+      }
     };
 
-    // Track job/housing interactions
-    (window as any).trackJobView = (jobId: string, jobTitle: string) => {
-      (window as any).trackEvent('job_view', 'engagement', `${jobTitle} (${jobId})`);
+    // Track job/housing interactions with enhanced analytics
+    window.trackJobView = (jobId: string, jobTitle: string) => {
+      window.trackEvent('job_view', 'engagement', `${jobTitle} (${jobId})`);
+      
+      // Enhanced GA4 tracking for jobs
+      if (window.gtag) {
+        window.gtag('event', 'select_content', {
+          content_type: 'job',
+          content_id: jobId,
+          item_name: jobTitle
+        });
+      }
     };
 
-    (window as any).trackHousingView = (housingId: string, housingTitle: string) => {
-      (window as any).trackEvent('housing_view', 'engagement', `${housingTitle} (${housingId})`);
+    window.trackHousingView = (housingId: string, housingTitle: string) => {
+      window.trackEvent('housing_view', 'engagement', `${housingTitle} (${housingId})`);
+      
+      // Enhanced GA4 tracking for housing
+      if (window.gtag) {
+        window.gtag('event', 'select_content', {
+          content_type: 'housing',
+          content_id: housingId,
+          item_name: housingTitle
+        });
+      }
     };
 
-    (window as any).trackSearch = (query: string, type: 'job' | 'housing', resultsCount: number) => {
-      (window as any).trackEvent('search', type, query, resultsCount);
+    window.trackSearch = (query: string, type: 'job' | 'housing', resultsCount: number) => {
+      window.trackEvent('search', type, query, resultsCount);
+      
+      // Enhanced GA4 search tracking
+      if (window.gtag) {
+        window.gtag('event', 'search', {
+          search_term: query,
+          content_type: type,
+          results_count: resultsCount
+        });
+      }
     };
 
-    (window as any).trackFavorite = (itemId: string, type: 'job' | 'housing', action: 'add' | 'remove') => {
-      (window as any).trackEvent(`favorite_${action}`, type, itemId);
+    window.trackFavorite = (itemId: string, type: 'job' | 'housing', action: 'add' | 'remove') => {
+      window.trackEvent(`favorite_${action}`, type, itemId);
+      
+      // Enhanced GA4 favorite tracking
+      if (window.gtag) {
+        const eventName = action === 'add' ? 'add_to_wishlist' : 'remove_from_wishlist';
+        window.gtag('event', eventName, {
+          content_type: type,
+          content_id: itemId
+        });
+      }
     };
   }, [location.pathname]);
 

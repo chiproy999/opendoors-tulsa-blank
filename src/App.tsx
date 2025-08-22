@@ -11,6 +11,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
 import AnalyticsTracker from "./components/seo/AnalyticsTracker";
+import SearchConsoleConfig from "./components/seo/SearchConsoleConfig";
 
 // Pages
 import Index from "./pages/Index";
@@ -55,7 +56,8 @@ const App = () => {
                 <Toaster />
                 <Sonner />
                 <BrowserRouter>
-                <AnalyticsTracker />
+        <AnalyticsTracker />
+        <SearchConsoleConfig />
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/jobs" element={<JobsPage />} />
