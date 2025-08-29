@@ -56,11 +56,11 @@ const HeroContent = ({
       <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/80 animate-fade-in-delayed">
         <div className="text-center">
           
-          <div className="text-sm">sted</div>
+          
         </div>
         <div className="text-center">
           <div className="text-2xl font-bold text-red-300">200+</div>
-          <div className="text-sm">Housing Options</div>
+          
         </div>
         <div className="text-center">
           <div className="text-2xl font-bold text-red-400">1000+</div>
