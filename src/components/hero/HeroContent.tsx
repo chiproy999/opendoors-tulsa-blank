@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import HeroButton from './HeroButton';
-
 interface HeroContentProps {
   title: string;
   subtitle: string;
@@ -18,16 +17,14 @@ interface HeroContentProps {
     link: string;
   };
 }
-
-const HeroContent = ({ 
-  title, 
-  subtitle, 
-  primaryCTA, 
-  secondaryCTA, 
-  businessCTA 
+const HeroContent = ({
+  title,
+  subtitle,
+  primaryCTA,
+  secondaryCTA,
+  businessCTA
 }: HeroContentProps) => {
-  return (
-    <div className="relative max-w-4xl mx-auto text-center">
+  return <div className="relative max-w-4xl mx-auto text-center">
       <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter mb-8 animate-fade-in leading-[0.85] selection:bg-red-300/30">
         <div className="relative">
           <span className="bg-gradient-to-r from-white via-red-200 to-red-300 bg-clip-text text-transparent drop-shadow-2xl animate-pulse-slow block mb-2 will-change-transform">
@@ -58,8 +55,8 @@ const HeroContent = ({
       {/* Trust Indicators */}
       <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/80 animate-fade-in-delayed">
         <div className="text-center">
-          <div className="text-2xl font-bold text-red-200">500+</div>
-          <div className="text-sm">Jobs Posted</div>
+          
+          <div className="text-sm">sted</div>
         </div>
         <div className="text-center">
           <div className="text-2xl font-bold text-red-300">200+</div>
@@ -71,39 +68,26 @@ const HeroContent = ({
         </div>
       </div>
 
-      {(primaryCTA || secondaryCTA) && (
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-in-delayed">
-          {primaryCTA && (
-            <HeroButton href={primaryCTA.link} variant="primary">
+      {(primaryCTA || secondaryCTA) && <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-in-delayed">
+          {primaryCTA && <HeroButton href={primaryCTA.link} variant="primary">
               {primaryCTA.text}
-            </HeroButton>
-          )}
+            </HeroButton>}
           
-          {secondaryCTA && (
-            <HeroButton href={secondaryCTA.link} variant="secondary">
+          {secondaryCTA && <HeroButton href={secondaryCTA.link} variant="secondary">
               {secondaryCTA.text}
-            </HeroButton>
-          )}
-        </div>
-      )}
+            </HeroButton>}
+        </div>}
       
-      {businessCTA && (
-        <div className="mt-8 animate-fade-in-delayed">
+      {businessCTA && <div className="mt-8 animate-fade-in-delayed">
           <Link to={businessCTA.link}>
-            <Button 
-              variant="link" 
-              className="text-white/90 hover:text-white font-medium text-lg group transition-all duration-300"
-            >
+            <Button variant="link" className="text-white/90 hover:text-white font-medium text-lg group transition-all duration-300">
               {businessCTA.text}
               <span className="inline-block transform group-hover:translate-x-1 transition-transform duration-300 ml-2">
                 →
               </span>
             </Button>
           </Link>
-        </div>
-      )}
-    </div>
-  );
+        </div>}
+    </div>;
 };
-
 export default HeroContent;
