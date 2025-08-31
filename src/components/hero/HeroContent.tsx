@@ -25,69 +25,64 @@ const HeroContent = ({
   businessCTA
 }: HeroContentProps) => {
   return <div className="relative max-w-4xl mx-auto text-center">
-      <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter mb-8 animate-fade-in leading-[0.85] selection:bg-red-300/30">
+      <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight mb-8 animate-fade-in leading-[0.9] selection:bg-blue-300/30">
         <div className="relative">
-          <span className="bg-gradient-to-r from-white via-red-200 to-red-300 bg-clip-text text-transparent drop-shadow-2xl animate-pulse-slow block mb-2 will-change-transform">
-            Open Doors
+          <span className="bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent drop-shadow-2xl block mb-2 will-change-transform">
+            Fighting Crime
           </span>
-          <span className="bg-gradient-to-r from-red-300 via-red-200 to-white bg-clip-text text-transparent drop-shadow-2xl block will-change-transform">
-            to New Opportunities
+          <span className="bg-gradient-to-r from-blue-200 via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl block will-change-transform">
+            in North Carolina
           </span>
-          <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-red-400/20 blur-3xl -z-10 animate-pulse will-change-transform"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/15 to-blue-400/15 blur-3xl -z-10"></div>
         </div>
       </h1>
       
-      <div className="mt-8 text-xl sm:text-2xl md:text-3xl leading-relaxed max-w-4xl mx-auto animate-fade-in-delayed">
-        <p className="text-white/95 font-medium mb-4">
-          Connecting individuals with <span className="text-red-200 font-semibold">conviction histories</span> to
+      <div className="mt-6 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto animate-fade-in-delayed">
+        <p className="text-white font-medium text-center">
+          Keeping communities safe with <span className="text-blue-200 font-semibold">alerts</span>, <span className="text-blue-200 font-semibold">news</span>, and <span className="text-blue-200 font-semibold">anonymous tips</span>.
         </p>
-        <div className="flex flex-wrap justify-center gap-4 text-lg sm:text-xl md:text-2xl">
-          <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent font-bold">
-            💼 Meaningful Employment
-          </span>
-          <span className="text-white/80">•</span>
-          <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent font-bold">
-            🏠 Stable Housing
-          </span>
-        </div>
       </div>
       
       {/* Trust Indicators */}
-      <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/80 animate-fade-in-delayed">
+      <div className="mt-10 flex flex-wrap justify-center items-center gap-8 text-white/80 animate-fade-in-delayed">
         <div className="text-center">
-          
-          
+          <div className="text-2xl font-bold text-blue-300">24/7</div>
+          <div className="text-sm">Alert System</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-red-300">200+</div>
-          
+          <div className="text-2xl font-bold text-blue-300">500+</div>
+          <div className="text-sm">Tips Received</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-red-400">1000+</div>
-          <div className="text-sm">Lives Changed</div>
+          <div className="text-2xl font-bold text-blue-400">100%</div>
+          <div className="text-sm">Anonymous</div>
         </div>
       </div>
 
-      {(primaryCTA || secondaryCTA) && <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-in-delayed">
-          {primaryCTA && <HeroButton href={primaryCTA.link} variant="primary">
-              {primaryCTA.text}
-            </HeroButton>}
-          
-          {secondaryCTA && <HeroButton href={secondaryCTA.link} variant="secondary">
-              {secondaryCTA.text}
-            </HeroButton>}
-        </div>}
+      <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-delayed">
+        <HeroButton href="/submit-tip" variant="danger" className="text-lg px-8 py-4">
+          Submit Anonymous Tip
+        </HeroButton>
+        
+        <HeroButton href="/news" variant="outline" className="text-base">
+          Latest Crime News
+        </HeroButton>
+        
+        <HeroButton href="/wanted" variant="ghost" className="text-base">
+          View Wanted Persons
+        </HeroButton>
+      </div>
       
-      {businessCTA && <div className="mt-8 animate-fade-in-delayed">
-          <Link to={businessCTA.link}>
-            <Button variant="link" className="text-white/90 hover:text-white font-medium text-lg group transition-all duration-300">
-              {businessCTA.text}
-              <span className="inline-block transform group-hover:translate-x-1 transition-transform duration-300 ml-2">
-                →
-              </span>
-            </Button>
-          </Link>
-        </div>}
+      <div className="mt-6 animate-fade-in-delayed">
+        <Link to="/contact">
+          <Button variant="link" className="text-white/90 hover:text-white font-medium text-base group transition-all duration-300">
+            Contact Law Enforcement
+            <span className="inline-block transform group-hover:translate-x-1 transition-transform duration-300 ml-2">
+              →
+            </span>
+          </Button>
+        </Link>
+      </div>
     </div>;
 };
 export default HeroContent;
