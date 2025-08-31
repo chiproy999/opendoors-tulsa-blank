@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DOMPurify from 'dompurify';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -13,11 +14,9 @@ import { toast } from 'sonner';
 
 // Input sanitization function
 const sanitizeInput = (input: string): string => {
-  return input
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-    .replace(/<[^>]*>/g, '')
-    .trim()
-    .slice(0, 1000); // Limit length
+  // Purifies input by stripping all HTML tags and scripts safely.
+  const purified = DOMPurify.sanitize(input, { ALLOWED_TAGS: [] });
+  return purified.trim().slice(0, 1000); // Limit length
 };
 
 const contactFormSchema = z.object({
