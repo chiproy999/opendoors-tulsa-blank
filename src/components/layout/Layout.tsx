@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import CookieConsent from '../common/CookieConsent';
@@ -14,6 +14,17 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, showBreadcrumbs = true, breadcrumbItems }: LayoutProps) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
