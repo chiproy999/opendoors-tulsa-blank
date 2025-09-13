@@ -23,7 +23,7 @@ export const createSearchFilters = (
 };
 
 export const parseRentAmount = (rentString: string): number => {
-  return parseInt(rentString.replace('$', '').replace(',', ''));
+  return parseInt(rentString.replace(/\$/g, '').replace(/,/g, ''));
 };
 
 export const formatRentAmount = (amount: number): string => {
