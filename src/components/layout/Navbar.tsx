@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from '../common/LanguageToggle';
@@ -20,8 +20,6 @@ const Navbar = () => {
   const isMobile = useIsMobile();
   const { user, isAuthenticated, logout } = useAuth();
   const { t } = useLanguage();
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -39,15 +37,6 @@ const Navbar = () => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
-      if (mobileMenuOpen) setMobileMenuOpen(false);
-    }
-  };
-
-  const handleSectionNavigation = (sectionId: string) => {
-    if (location.pathname === '/') {
-      scrollToSection(sectionId);
-    } else {
-      navigate(`/#${sectionId}`);
       if (mobileMenuOpen) setMobileMenuOpen(false);
     }
   };
@@ -94,15 +83,15 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <button
-              onClick={() => handleSectionNavigation('about')}
+            <button 
+              onClick={() => scrollToSection('about')} 
               className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 transition-colors"
             >
               {t('nav.about')}
             </button>
-
-            <button
-              onClick={() => handleSectionNavigation('contact')}
+            
+            <button 
+              onClick={() => scrollToSection('contact')} 
               className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 transition-colors"
             >
               {t('nav.contact')}
@@ -181,14 +170,14 @@ const Navbar = () => {
             >
               {t('nav.resources')}
             </Link>
-            <button
-              onClick={() => handleSectionNavigation('about')}
+            <button 
+              onClick={() => scrollToSection('about')}
               className="px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-gray-700 text-left"
             >
               {t('nav.about')}
             </button>
-            <button
-              onClick={() => handleSectionNavigation('contact')}
+            <button 
+              onClick={() => scrollToSection('contact')}
               className="px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 hover:bg-gray-50 dark:hover:bg-gray-700 text-left"
             >
               {t('nav.contact')}

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 interface HeroButtonProps {
   href: string;
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline';
   className?: string;
 }
 
@@ -13,15 +13,11 @@ const HeroButton = ({ href, children, variant = 'primary', className }: HeroButt
   const getVariantStyles = () => {
     switch (variant) {
       case 'primary':
-        return "bg-blue-600 hover:bg-blue-700 text-white border-blue-600 hover:border-blue-700 shadow-lg hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2";
+        return "bg-black hover:bg-gray-800 text-white border-black hover:border-gray-800 shadow-lg hover:shadow-xl";
       case 'secondary':
-        return "bg-white hover:bg-gray-50 text-gray-900 border-white hover:border-gray-200 shadow-lg hover:shadow-xl focus:ring-2 focus:ring-gray-500 focus:ring-offset-2";
+        return "bg-white hover:bg-gray-50 text-black border-white hover:border-gray-200 shadow-lg hover:shadow-xl";
       case 'outline':
-        return "bg-transparent border-2 border-white/70 text-white hover:bg-white/10 hover:border-white focus:ring-2 focus:ring-white/50 focus:ring-offset-2";
-      case 'danger':
-        return "bg-red-600 hover:bg-red-700 text-white border-red-600 hover:border-red-700 shadow-lg hover:shadow-xl focus:ring-2 focus:ring-red-500 focus:ring-offset-2";
-      case 'ghost':
-        return "bg-transparent text-white/90 hover:text-white hover:bg-white/5 focus:ring-2 focus:ring-white/30 focus:ring-offset-2";
+        return "bg-transparent border-2 border-white/60 text-white hover:bg-white/10 hover:border-white";
       default:
         return "";
     }
