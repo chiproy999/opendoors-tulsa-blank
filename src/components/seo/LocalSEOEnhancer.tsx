@@ -25,9 +25,28 @@ const LocalSEOEnhancer = () => {
     addLocalBusinessSchema();
     addServiceAreaSchema();
     addGeoLocationSchema();
+
+    // Cleanup function to remove scripts when component unmounts
+    return () => {
+      removeExistingScript('local-business-schema');
+      removeExistingScript('service-area-schema');
+      serviceLocations.forEach(location => {
+        removeExistingScript(`geo-schema-${location.city.toLowerCase()}`);
+      });
+    };
   }, []);
 
+  const removeExistingScript = (dataType: string) => {
+    const existingScript = document.querySelector(`script[data-type="${dataType}"]`);
+    if (existingScript) {
+      existingScript.remove();
+    }
+  };
+
   const addLocalBusinessSchema = () => {
+    // Remove existing script if it exists
+    removeExistingScript('local-business-schema');
+
     const localBusinessSchema = {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
@@ -90,6 +109,9 @@ const LocalSEOEnhancer = () => {
   };
 
   const addServiceAreaSchema = () => {
+    // Remove existing script if it exists
+    removeExistingScript('service-area-schema');
+
     const serviceAreaSchema = {
       "@context": "https://schema.org",
       "@type": "Service",
@@ -121,6 +143,10 @@ const LocalSEOEnhancer = () => {
   const addGeoLocationSchema = () => {
     serviceLocations.forEach(location => {
       if (location.coordinates) {
+        const dataType = `geo-schema-${location.city.toLowerCase()}`;
+        // Remove existing script if it exists
+        removeExistingScript(dataType);
+
         const geoSchema = {
           "@context": "https://schema.org",
           "@type": "Place",
@@ -141,7 +167,7 @@ const LocalSEOEnhancer = () => {
 
         const script = document.createElement('script');
         script.type = 'application/ld+json';
-        script.setAttribute('data-type', `geo-schema-${location.city.toLowerCase()}`);
+        script.setAttribute('data-type', dataType);
         script.textContent = JSON.stringify(geoSchema);
         document.head.appendChild(script);
       }
